@@ -17,12 +17,24 @@
 <body>
     <div id="header-include"></div>
     <script>
-    // header.htmlを読み込んで挿入
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-include').innerHTML = data;
-      });
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
     </script>
     <div class="container">
         <section>
