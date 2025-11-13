@@ -10,7 +10,7 @@
     <div id="header-include"></div>
     <script>
         // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
-        fetch('docs/header.html')
+        fetch('header.html')
             .then(res => res.text())
             .then(data => {
                 const headerDiv = document.getElementById('header-include');
