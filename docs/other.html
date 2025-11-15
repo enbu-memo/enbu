@@ -64,41 +64,5 @@
     backToTop.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
-    // FullCalendar初期化
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'ja',
-            height: 500,
-            events: [
-                {
-                    title: '秋の大合戦',
-                    start: '2025-11-20',
-                    end: '2025-11-27',
-                    color: '#1976d2'
-                },
-                {
-                    title: 'レイドバトル',
-                    start: '2025-12-01',
-                    end: '2025-12-07',
-                    color: '#ff9800'
-                }
-            ]
-        });
-        calendar.render();
-    });
-    </script>
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 200) {
-            backToTop.style.display = 'block';
-        } else {
-            backToTop.style.display = 'none';
-        }
-    });
-    backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
     </script>
 </html>

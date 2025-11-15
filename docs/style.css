@@ -1,3 +1,22 @@
+/* 評価ランクごとの色付け */
+.col1 {
+    /* デフォルト色はなし */
+}
+.col1:contains('S＋'), .col1:contains("S+") {
+    background-color: #ffb6c1 !important; /* ピンク */
+}
+.col1:contains('S') {
+    background-color: #ffc0cb !important; /* 薄ピンク */
+}
+.col1:contains('A') {
+    background-color: #ff7f7f !important; /* 赤 */
+}
+.col1:contains('B') {
+    background-color: #ffa500 !important; /* オレンジ */
+}
+.col1:contains('C') {
+    background-color: #bfff80 !important; /* 黄緑 */
+}
 /* PC用テーブル列幅（601px以上） - 評価・補足テーブル基準 */
 /* テーブル内画像サイズ（PC:64x64, スマホ:32x32） */
 @media (min-width: 601px) {
@@ -38,6 +57,9 @@
     .fc-col-header-cell-cushion {
         font-size: 1em !important;
     }
+    .fc-toolbar-title {
+        font-size: 2em !important;
+    }
 }
 @media (max-width: 600px) {
     /* スマホ用テーブル列幅 - 評価基準・ABCテーブル統一 */
@@ -71,24 +93,18 @@
         word-break: break-word;
     }
 }
-.border th,
-.border td,
-table th,
-table td {
+/* 2列目だけ左寄せ */
+.border th.col2,
+.border td.col2,
+.details th.col2,
+.details td.col2,
+table[name="A"] th.col2,
+table[name="A"] td.col2,
+table[name="B"] th.col2,
+table[name="B"] td.col2,
+table[name="C"] th.col2,
+table[name="C"] td.col2 {
     text-align: left !important;
-}
-.border th,
-.border td {
-    text-align: left !important;
-}
-/* FullCalendar 全体を1周り小さく */
-.fc {
-    font-size: 0.7em;
-}
-.fc-daygrid-day-number,
-.fc-col-header-cell-cushion,
-.fc-toolbar-title {
-    font-size: 0.85em !important;
 }
 h2.section-title {
     font-size: 2em;
