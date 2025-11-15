@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スキルページ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+    <main>
+        <h2>公開データ【スキル】</h2>
+        <nav class="toc">
+                        <h3>目次</h3>
+                        <ul>
+                                <li class="has-sub">
+                                    <a href="#skill-group1" class="main-toc">補助スキル&nbsp;▼</a>
+                                    <ul class="sub-toc" style="display:none;">
+                                        <li><a href="#bokutotsu">木訥利刀の効果</a></li>
+                                        <li><a href="#gesshoku">月蝕陽餐の効果</a></li>
+                                        <li><a href="#yumouhojo">勇猛系補助の効果倍率</a></li>
+                                        <li><a href="#kaisuhojo">回数系補助の効果倍率</a></li>
+                                        <li><a href="#tekichuhojo">敵中系補助の効果倍率</a></li>
+                                        <li><a href="#jutaihojo">受退系補助の効果倍率</a></li>
+                                        <li><a href="#damekeigen">ダメージ軽減補助の効果倍率</a></li>
+                                        <li><a href="#dameup">ダメージ・能力増減効果上昇補助の効果倍率</a></li>
+                                        <li><a href="#tamamo">玉藻前の効果倍率</a></li>
+                                        <li><a href="#ouenkaifuku">応援回復効果上昇補助の効果倍率</a></li>
+                                        <li><a href="#kienhei">騎焔兵の効果倍率</a></li>
+                                        <li><a href="#statusup">ステータスアップ系補助の効果</a></li>
+                                        <li><a href="#tekichu">敵中勇猛系補助の効果倍率</a></li>
+                                        <li><a href="#hikin">飛禽系補助の効果倍率</a></li>
+                                        <li><a href="#omihata">大御旗の効果倍率</a></li>
+                                        <li><a href="#kinme">狼の金眼の発動確率</a></li>
+                                        <li><a href="#onko">温故系補助の対象と恩恵</a></li>
+                                        <li><a href="#genkaikei">能力減少軽減補助の効果倍率</a></li>
+                                        <li><a href="#jouji">常時発動する補助の効果倍率</a></li>
+                                        <li><a href="#hoshu">宝珠の効果倍率</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#skill-group2" class="main-toc">その他&nbsp;▼</a>
+                                    <ul class="sub-toc" style="display:none;">
+                                        <li><a href="#ouen">応援回数に応じたスキルの効果倍率</a></li>
+                                        <li><a href="#jutai">受退回数に応じたスキルの効果倍率</a></li>
+                                        <li><a href="#yotai">与退回数に応じたスキルの効果倍率</a></li>
+                                        <li><a href="#command">コマンド回数に応じたスキルの効果倍率</a></li>
+                                        <li><a href="#tenha">天破嵐華回数に応じたスキルの効果倍率</a></li>
+                                        <li><a href="#kaifuku">回復スキルの効果倍率</a></li>
+                                        <li><a href="#genkaskill">能力減少スキルの効果倍率</a></li>
+                                        <li><a href="#senpyo">千瓢光の効果倍率</a></li>
+                                        <li><a href="#shingi">真技レベル上昇による効果倍率</a></li>
+                                    </ul>
+                                </li>
+                        </ul>
+        <!-- ...existing code... -->
+                <script>
+                // 目次のアコーディオン展開（補助・その他両方対応）
+                document.addEventListener('DOMContentLoaded', function() {
+                    var mainTocs = document.querySelectorAll('.main-toc');
+                    mainTocs.forEach(function(mainToc){
+                        var subToc = mainToc.nextElementSibling;
+                        if(mainToc && subToc && subToc.classList.contains('sub-toc')){
+                            mainToc.addEventListener('click', function(e){
+                                e.preventDefault();
+                                if(subToc.style.display === 'none' || subToc.style.display === ''){
+                                    subToc.style.display = 'block';
+                                }else{
+                                    subToc.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+                });
+                </script>
+        </nav>
+        <section>
+                                    
+            <hr class="section-divider">
+                <h3 id="skill-group1">補助スキル</h3>
+                                                                                                                                                                                    <section>
+                                                                                                                                                                                        <h4 id="bokutotsu">木訥利刀の効果</h4>
+                                                                                                                                                                                        <img src="img/DB038.png" alt="スキル画像 DB038" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                                                                                                    </section>
+                                                                                                                                                                        <section>
+                                                                                                                                                                            <h4 id="gesshoku">月蝕陽餐の効果</h4>
+                                                                                                                                                                            <img src="img/DB037.png" alt="スキル画像 DB037" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                                                                                        </section>
+                                                                                                                                                            <section>
+                                                                                                                                                                <h4 id="yumouhojo">勇猛系補助の効果倍率</h4>
+                                                                                                                                                                <img src="img/DB034.png" alt="スキル画像 DB034" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                                                                            </section>
+                                                                                                                                                <section>
+                                                                                                                                                    <h4 id="kaisuhojo">回数系補助の効果倍率</h4>
+                                                                                                                                                    <img src="img/DB033.png" alt="スキル画像 DB033" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                                                                </section>
+                                                                                                                                    <section>
+                                                                                                                                        <h4 id="tekichuhojo">敵中系補助の効果倍率</h4>
+                                                                                                                                        <img src="img/DB031.png" alt="スキル画像 DB031" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                                                    </section>
+                                                                                                                        <section>
+                                                                                                                            <h4 id="jutaihojo">受退系補助の効果倍率</h4>
+                                                                                                                            <img src="img/DB029.png" alt="スキル画像 DB029" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                                        </section>
+                                                                                                            <section>
+                                                                                                                <h4 id="damekeigen">ダメージ軽減補助の効果倍率</h4>
+                                                                                                                <img src="img/DB028.png" alt="スキル画像 DB028" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                            </section>
+                                                                                                <section>
+                                                                                                    <h4 id="dameup">ダメージ・能力増減効果上昇補助の効果倍率</h4>
+                                                                                                    <img src="img/DB027.png" alt="スキル画像 DB027" class="center-image" style="max-width:100%;height:auto;">
+                                                                                                </section>
+                                                                                    <section>
+                                                                                        <h4 id="tamamo">玉藻前の効果倍率</h4>
+                                                                                        <img src="img/DB025.png" alt="スキル画像 DB025" class="center-image" style="max-width:100%;height:auto;">
+                                                                                    </section>
+                                                                        <section>
+                                                                            <h4 id="ouenkaifuku">応援回復効果上昇補助の効果倍率</h4>
+                                                                            <img src="img/DB024.png" alt="スキル画像 DB024" class="center-image" style="max-width:100%;height:auto;">
+                                                                        </section>
+                                                            <section>
+                                                                <h4 id="kienhei">騎焔兵の効果倍率</h4>
+                                                                <img src="img/DB016.png" alt="スキル画像 DB016" class="center-image" style="max-width:100%;height:auto;">
+                                                            </section>
+                                                <section>
+                                                    <h4 id="statusup">ステータスアップ系補助の効果</h4>
+                                                    <img src="img/DB015.png" alt="スキル画像 DB015" class="center-image" style="max-width:100%;height:auto;">
+                                                    <img src="img/DB041.png" alt="スキル画像 DB041" class="center-image" style="max-width:100%;height:auto;">
+                                                </section>
+                                    <section>
+                                        <h4 id="tekichu">敵中勇猛系補助の効果倍率</h4>
+                                        <img src="img/DB013.png" alt="スキル画像 DB013" class="center-image" style="max-width:100%;height:auto;">
+                                        <img src="img/DB014.png" alt="スキル画像 DB014" class="center-image" style="max-width:100%;height:auto;">
+                                    </section>
+                        <section>
+                            <h4 id="hikin">飛禽系補助の効果倍率</h4>
+                            <img src="img/DB010.png" alt="スキル画像 DB010" class="center-image" style="max-width:100%;height:auto;">
+                            <img src="img/DB011.png" alt="スキル画像 DB011" class="center-image" style="max-width:100%;height:auto;">
+                            <img src="img/DB012.png" alt="スキル画像 DB012" class="center-image" style="max-width:100%;height:auto;">
+                            <img src="img/DB032.png" alt="スキル画像 DB032" class="center-image" style="max-width:100%;height:auto;">
+                        </section>
+            <section>
+                <h4 id="omihata">大御旗の効果倍率</h4>
+                <img src="img/DB001.png" alt="スキル画像 DB001" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="kinme">狼の金眼の発動確率</h4>
+                <img src="img/DB002.png" alt="スキル画像 DB002" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="onko">温故系補助の対象と恩恵</h4>
+                <img src="img/DB003.png" alt="スキル画像 DB003" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB004.png" alt="スキル画像 DB004" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB035.png" alt="スキル画像 DB035" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="genkaikei">能力減少軽減補助の効果倍率</h4>
+                <img src="img/DB005.png" alt="スキル画像 DB005" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="jouji">常時発動する補助の効果倍率</h4>
+                <img src="img/DB006.png" alt="スキル画像 DB006" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB007.png" alt="スキル画像 DB007" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB008.png" alt="スキル画像 DB008" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB030.png" alt="スキル画像 DB030" class="center-image" style="max-width:100%;height:auto;">
+
+            <section>
+                <h4 id="hoshu">宝珠の効果倍率</h4>
+                <img src="img/DB009.png" alt="スキル画像 DB009" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            </section>
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+        <section>
+            <hr class="section-divider">
+            <h3 id="skill-group2">その他</h3>
+            <section>
+                <h4 id="ouen">応援回数に応じたスキルの効果倍率</h4>
+                <img src="img/DB017.png" alt="スキル画像 DB017" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB018.png" alt="スキル画像 DB018" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="jutai">受退回数に応じたスキルの効果倍率</h4>
+                <img src="img/DB022.png" alt="スキル画像 DB022" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB040.png" alt="スキル画像 DB040" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="yotai">与退回数に応じたスキルの効果倍率</h4>
+                <img src="img/DB026.png" alt="スキル画像 DB026" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB039.png" alt="スキル画像 DB039" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="command">コマンド回数に応じたスキルの効果倍率</h4>
+                <img src="img/DB021.png" alt="スキル画像 DB021" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="tenha">天破嵐華回数に応じたスキルの効果倍率</h4>
+                <img src="img/DB019.png" alt="スキル画像 DB019" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB020.png" alt="スキル画像 DB020" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="kaifuku">回復スキルの効果倍率</h4>
+                <img src="img/DB023.png" alt="スキル画像 DB023" class="center-image" style="max-width:100%;height:auto;">
+                <img src="img/DB042.png" alt="スキル画像 DB042" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+                        
+            <section>
+                <h4 id="genkaskill">能力減少スキルの効果倍率</h4>
+                <img src="img/DB043.png" alt="スキル画像 DB043" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="senpyo">千瓢光の効果倍率</h4>
+                <img src="img/DB036.png" alt="スキル画像 DB036" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <section>
+                <h4 id="shingi">真技レベル上昇による効果倍率</h4>
+                <img src="img/DB044.png" alt="スキル画像 DB044" class="center-image" style="max-width:100%;height:auto;">
+            </section>
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+    </main>
+    </div>
+</body>
+</html>

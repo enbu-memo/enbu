@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>その他ページ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+    <main>
+        <h2>公開データ【その他】</h2>
+        <nav class="toc">
+            <h3>目次</h3>
+            <ul>
+                <li><a href="#other-group1">その他データ1</a></li>
+                <li><a href="#other-group2">その他データ2</a></li>
+            </ul>
+        </nav>
+        <section>
+            <hr class="section-divider">
+            <h3 id="other-group1" class="section-title">その他データ1</h3>
+            <img src="img/OTHER001.png" alt="その他画像 OTHER001" class="center-image" style="max-width:100%;height:auto;">
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+        <section>
+            <hr class="section-divider">
+            <h3 id="other-group2" class="section-title">その他データ2</h3>
+            <img src="img/OTHER002.png" alt="その他画像 OTHER002" class="center-image" style="max-width:100%;height:auto;">
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+    </main>
+    </div>
+</body>
+</html>

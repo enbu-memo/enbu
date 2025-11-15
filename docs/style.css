@@ -1,3 +1,118 @@
+/* 全見出し・目次・小項目の色をトップ文言に統一 */
+/* 目次の小項目（サブ項目）を控えめに */
+.toc .sub-toc a {
+    color: #222;
+    font-size: 0.97em !important;
+    font-weight: 400 !important;
+}
+/* 目次リストと題名の強調度調整 */
+.toc a {
+    color: #222 !important;
+    font-size: 1.12em !important;
+    font-weight: 700 !important;
+}
+.section-title {
+    font-size: 1.05em !important;
+    font-weight: 600 !important;
+    color: #222 !important;
+}
+.has-sub > .main-toc {
+    cursor: pointer;
+    position: relative;
+    font-size: 1.18em;
+    font-weight: 900;
+    color: #222;
+    letter-spacing: 0.02em;
+}
+.has-sub > .main-toc::after {
+    content: "";
+}
+.sub-toc a {
+        font-size: 0.97em;
+        font-weight: 400;
+        color: #666;
+    margin-left: 16px;
+    background: #fafafa;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 4px 0 4px 8px;
+}
+.section-divider {
+    border: none;
+    border-top: 2px solid #eee;
+    margin: 32px 0 18px 0;
+}
+.section-title {
+    margin-bottom: 18px;
+}
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 奥義ページ用 目次・著作権CSS */
+.copyright {
+    font-size: 12px;
+    color: #888;
+    text-align: right;
+    margin-top: 4px;
+    margin-right: 8px;
+}
+.toc {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 16px 0px;
+    margin-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.toc h3 {
+    margin-top: 0;
+    color: #222;
+    font-size: 1.25em;
+    font-weight: 900;
+    text-align: left;
+    letter-spacing: 0.03em;
+}
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+.toc li {
+    margin-bottom: 0;
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+.toc a {
+    color: #1976d2;
+    text-decoration: none;
+    font-size: 1.25em;
+    font-weight: 800;
+    display: block;
+    padding: 7px 0;
+    border-right-width: 0;
+    transition: background 0.2s;
+    width: 350px;
+    text-align: left;
+/* 最後のliの区切り線を消す */
+}
+.toc ul li:last-child {
+    border-bottom: none;
+}
+.toc a:hover {
+    background: #f5f5f5;
+}
 /* テーブルスクロール用 */
 .table-scroll {
     max-height: 400px;
@@ -63,14 +178,19 @@ nav a:hover {
 }
 .container {
     max-width: 900px;
-    margin: 40px auto 0 auto;
+    margin: 0px auto 0 auto;
     background: #fff;
-    padding: 30px 20px;
+    padding: 20px 20px 30px 20px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 h2 {
-    margin-top: 24px;
+    margin-top: 0;
+    color: #222;
+    font-size: 2.4em;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-shadow: 2px 2px 8px rgba(21,101,192,0.18), 0 0 2px #fff;
 }
 table {
     width: 100%;
@@ -122,11 +242,17 @@ footer {
     }
     
     h3 {
-        font-size: 1.2em;
+        font-size: 1.35em;
+        color: #222;
+        font-weight: 800;
+        letter-spacing: 0.02em;
     }
     
     h4 {
-        font-size: 1.1em;
+        font-size: 1em;
+        color: #222;
+        font-weight: 500;
+        letter-spacing: 0.01em;
     }
     
     table {

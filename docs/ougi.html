@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奥義ページ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+    <main>
+        <h2>公開データ【奥義】</h2>
+        <nav class="toc">
+            <h3>目次</h3>
+            <ul>
+                <li><a href="#da001-004">絆奥義 倍率</a></li>
+                <li><a href="#da005-008-010">通常奥義 ダメージ倍率</a></li>
+                <li><a href="#da006-007">通常奥義 能力増減効果倍率</a></li>
+                <li><a href="#da011">奥義の補助発動率上昇効果</a></li>
+            </ul>
+        </nav>
+        <section>
+            <hr class="section-divider">
+            <h3 id="da001-004" class="section-title">絆奥義 倍率</h3>
+            <img src="img/DA001.png" alt="奥義画像 DA001" class="center-image" style="max-width:100%;height:auto;">
+            <img src="img/DA002.png" alt="奥義画像 DA002" class="center-image" style="max-width:100%;height:auto;">
+            <img src="img/DA003.png" alt="奥義画像 DA003" class="center-image" style="max-width:100%;height:auto;">
+            <img src="img/DA004.png" alt="奥義画像 DA004" class="center-image" style="max-width:100%;height:auto;">
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+        <section>
+            <hr class="section-divider">
+            <h3 id="da005-008-010" class="section-title">通常奥義 ダメージ倍率</h3>
+            <img src="img/DA005.png" alt="奥義画像 DA005" class="center-image" style="max-width:100%;height:auto;">
+            <img src="img/DA008.png" alt="奥義画像 DA008" class="center-image" style="max-width:100%;height:auto;">
+            <img src="img/DA009.png" alt="奥義画像 DA009" class="center-image" style="max-width:100%;height:auto;">
+            <img src="img/DA010.png" alt="奥義画像 DA010" class="center-image" style="max-width:100%;height:auto;">
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+        <section>
+            <hr class="section-divider">
+            <h3 id="da006-007" class="section-title">通常奥義 能力増減効果倍率</h3>
+            <img src="img/DA006.png" alt="奥義画像 DA006" class="center-image" style="max-width:100%;height:auto;">
+            <img src="img/DA007.png" alt="奥義画像 DA007" class="center-image" style="max-width:100%;height:auto;">
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+    </main>
+        <section>
+            <hr class="section-divider">
+            <h3 id="da011" class="section-title">奥義の補助発動率上昇効果</h3>
+            <img src="img/DA011.png" alt="奥義画像 DA011" class="center-image" style="max-width:100%;height:auto;">
+            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+    </div>
+</body>
+</html>
