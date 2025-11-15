@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>その他ページ</title>
+    <title>公開データ【その他】</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,23 +35,70 @@
         <nav class="toc">
             <h3>目次</h3>
             <ul>
-                <li><a href="#other-group1">その他データ1</a></li>
-                <li><a href="#other-group2">その他データ2</a></li>
+                <li><a href="#combo">コンボ連舞数によるダメージ倍率</a></li>
             </ul>
         </nav>
         <section>
             <hr class="section-divider">
-            <h3 id="other-group1" class="section-title">その他データ1</h3>
-            <img src="img/OTHER001.png" alt="その他画像 OTHER001" class="center-image" style="max-width:100%;height:auto;">
-            <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
-        </section>
-        <section>
-            <hr class="section-divider">
-            <h3 id="other-group2" class="section-title">その他データ2</h3>
-            <img src="img/OTHER002.png" alt="その他画像 OTHER002" class="center-image" style="max-width:100%;height:auto;">
+            <h3 id="combo" class="section-title">コンボ連舞数によるダメージ倍率</h3>
+            <img src="img/DC001.png" alt="コンボ連舞数によるダメージ倍率" class="center-image" style="max-width:100%;height:auto;">
             <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
         </section>
     </main>
     </div>
 </body>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <!-- FullCalendar CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // FullCalendar初期化
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'ja',
+            height: 500,
+            events: [
+                {
+                    title: '秋の大合戦',
+                    start: '2025-11-20',
+                    end: '2025-11-27',
+                    color: '#1976d2'
+                },
+                {
+                    title: 'レイドバトル',
+                    start: '2025-12-01',
+                    end: '2025-12-07',
+                    color: '#ff9800'
+                }
+            ]
+        });
+        calendar.render();
+    });
+    </script>
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
 </html>

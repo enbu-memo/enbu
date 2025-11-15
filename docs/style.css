@@ -1,3 +1,155 @@
+/* PC用テーブル列幅（601px以上） - 評価・補足テーブル基準 */
+/* テーブル内画像サイズ（PC:64x64, スマホ:32x32） */
+@media (min-width: 601px) {
+    .table-scroll img {
+        width: 64px !important;
+        height: 64px !important;
+    }
+}
+@media (max-width: 600px) {
+    .table-scroll img {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}
+@media (min-width: 601px) {
+    .details th.col1, .details td.col1,
+    .border th.col1, .border td.col1,
+    table[name="A"] th.col1, table[name="A"] td.col1,
+    table[name="B"] th.col1, table[name="B"] td.col1,
+    table[name="C"] th.col1, table[name="C"] td.col1 {
+        width: 10px !important;
+        min-width: 10px !important;
+    }
+    .details th.col2, .details td.col2,
+    .border th.col2, .border td.col2,
+    table[name="A"] th.col2, table[name="A"] td.col2,
+    table[name="B"] th.col2, table[name="B"] td.col2,
+    table[name="C"] th.col2, table[name="C"] td.col2 {
+        min-width: 180px;
+        width: 180px;
+    }
+}
+@media (min-width: 601px) {
+    .fc-daygrid-day-number {
+        font-size: 1.2em !important;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 1em !important;
+    }
+}
+@media (max-width: 600px) {
+                /* スマホ用テーブル列幅 - 評価・補足テーブル基準 */
+                .details th.col1, .details td.col1,
+                .border th.col1, .border td.col1,
+                table[name="A"] th.col1, table[name="A"] td.col1,
+                table[name="B"] th.col1, table[name="B"] td.col1,
+                table[name="C"] th.col1, table[name="C"] td.col1 {
+                    width: 32px;
+                    min-width: 32px;
+                }
+                .details th.col2, .details td.col2,
+                .border th.col2, .border td.col2,
+                table[name="A"] th.col2, table[name="A"] td.col2,
+                table[name="B"] th.col2, table[name="B"] td.col2,
+                table[name="C"] th.col2, table[name="C"] td.col2 {
+                    min-width: 80px;
+                    width: 80px;
+                }
+            table[name="A"] th.col1, table[name="A"] td.col1,
+            table[name="B"] th.col1, table[name="B"] td.col1,
+            table[name="C"] th.col1, table[name="C"] td.col1 {
+                min-width: 40px;
+                width: 40px;
+            }
+            table[name="A"] th.col2, table[name="A"] td.col2,
+            table[name="B"] th.col2, table[name="B"] td.col2,
+            table[name="C"] th.col2, table[name="C"] td.col2 {
+                min-width: 60px;
+                width: 60px;
+            }
+        table[name="A"] th.col2, table[name="A"] td.col2,
+        table[name="B"] th.col2, table[name="B"] td.col2,
+        table[name="C"] th.col2, table[name="C"] td.col2 {
+            min-width: 80px;
+            width: 80px;
+        }
+    .table-scroll {
+        overflow-x: auto;
+    }
+    .table-scroll table {
+        width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    table th,
+    table td {
+        white-space: normal;
+        word-break: break-word;
+    }
+}
+.border th,
+.border td,
+table th,
+table td {
+    text-align: left !important;
+}
+.border th,
+.border td {
+    text-align: left !important;
+}
+/* FullCalendar 全体を1周り小さく */
+.fc {
+    font-size: 0.7em;
+}
+.fc-daygrid-day-number,
+.fc-col-header-cell-cushion,
+.fc-toolbar-title {
+    font-size: 0.85em !important;
+}
+h2.section-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+/* イベントカレンダー見出しサイズ調整 */
+h3.section-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+/* FullCalendar 日付サイズ調整（スマホ用） */
+@media (max-width: 600px) {
+    .fc-daygrid-day-number {
+        font-size: 12px !important;
+    }
+    .fc-toolbar-title {
+        font-size: 16px !important;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 12px !important;
+    }
+}
+/* 一番上に戻るボタン */
+#backToTop {
+    position: fixed;
+    right: 24px;
+    bottom: 32px;
+    z-index: 9999;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 2em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    display: none;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+#backToTop:hover {
+    background: #1565c0;
+    box-shadow: 0 4px 16px rgba(21,101,192,0.18);
+}
 /* 全見出し・目次・小項目の色をトップ文言に統一 */
 /* 目次の小項目（サブ項目）を控えめに */
 .toc .sub-toc a {
@@ -289,23 +441,34 @@ footer {
     table[name="A"] th.col1, table[name="A"] td.col1,
     table[name="B"] th.col1, table[name="B"] td.col1,
     table[name="C"] th.col1, table[name="C"] td.col1 {
-        width: 80px;
-        min-width: 60px;
+           width: 32px;
+           min-width: 32px;
     }
+    .details th.col2, .details td.col2,
+    .border th.col2, .border td.col2,
+    table[name="A"] th.col2, table[name="A"] td.col2,
+    table[name="B"] th.col2, table[name="B"] td.col2,
+    table[name="C"] th.col2, table[name="C"] td.col2 {
+           min-width: 48px;
+           width: 48px;
+}
 }
 /* details/borderテーブルの列幅個別指定 */
+.details th.col1, .details td.col1,
+/* PC用テーブル列幅（601px以上） */
 .details th.col1, .details td.col1,
 .border th.col1, .border td.col1,
 table[name="A"] th.col1, table[name="A"] td.col1,
 table[name="B"] th.col1, table[name="B"] td.col1,
 table[name="C"] th.col1, table[name="C"] td.col1 {
-    width: 120px;
-    min-width: 100px;
+    width: 40px;
+    min-width: 40px;
 }
 .details th.col2, .details td.col2,
 .border th.col2, .border td.col2,
 table[name="A"] th.col2, table[name="A"] td.col2,
 table[name="B"] th.col2, table[name="B"] td.col2,
 table[name="C"] th.col2, table[name="C"] td.col2 {
-    width: auto;
+    min-width: 120px;
+    width: 120px;
 }

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+        <title>戦国炎舞の備忘録-トップ</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="header-include"></div>
@@ -30,11 +32,12 @@
     </script>
     <div class="container">
         <main>
-            <section>
-                <h2>サイトについて</h2>
-            <p>このサイトは、随時更新していきます。</p>
+        <section>
+            <h2>イベントカレンダー</h2>
+            <div id="calendar"></div>
         </section>
         <section>
+            <hr class="section-divider">
             <h2>更新履歴</h2>
             <label for="filterInput"> </label>
             <input type="text" id="filterInput" placeholder="記事名で絞り込み">
@@ -52,34 +55,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><a href="article1.html">記事1</a></td>
-                            <td data-date="2025-11-10">2025/11/10</td>
-                            <td>初版公開</td>
-                        </tr>
-                        <tr>
-                            <td><a href="article2.html">記事2</a></td>
-                            <td data-date="2025-11-09">2025/11/09</td>
-                            <td>内容追加・調整</td>
-                        </tr>
-                        <tr>
-                            <td><a href="article3.html">記事3</a></td>
-                            <td data-date="2025-11-08">2025/11/08</td>
-                            <td>レイアウト修正</td>
-                        </tr>
-                        <tr>
-                            <td><a href="article4.html">記事4</a></td>
-                            <td data-date="2025-11-07">2025/11/07</td>
-                            <td>リンク追加</td>
-                        </tr>
-                        <tr>
-                            <td><a href="article5.html">記事5</a></td>
-                            <td data-date="2025-11-06">2025/11/06</td>
-                            <td>誤字修正</td>
-                        </tr>
-                        <tr>
-                            <td><a href="article6.html">記事6</a></td>
-                            <td data-date="2025-11-05">2025/11/05</td>
-                            <td>画像追加</td>
+                            <td>ALL</td>
+                            <td data-date="2025-11-16">2025/11/16</td>
+                            <td>開設</td>
                         </tr>
                         <!-- ここに行を追加しても5件を超えたらスクロールされます -->
                     </tbody>
@@ -88,7 +66,7 @@
         </section>
     </div>
     <footer>
-        <p>&copy; 2025 サイト</p>
+        <p>&copy; 2025 戦国炎舞の備忘録</p>
     </footer>
     <script>
         // 記事名のみフィルター
@@ -132,5 +110,66 @@
             sortButton.textContent = sortAsc ? '▲' : '▼';
         });
     </script>
+    <button id="backToTop" style="display:none;position:fixed;bottom:30px;right:30px;z-index:999;">一番上に戻る</button>
 </body>
+    <!-- FullCalendar CDN（CSS・JS両方） -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // FullCalendar初期化（イベントはevents.jsonから取得）
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        if (calendarEl) {
+            fetch('events.json')
+                .then(response => response.json())
+                .then(events => {
+                    let allEvents = events;
+                    let calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        locale: 'ja',
+                        height: 'auto',
+                        showNonCurrentDates: true,
+                        events: function(fetchInfo, successCallback, failureCallback) {
+                            // 表示中の月の開始・終了日
+                            const startMonth = fetchInfo.start;
+                            const endMonth = fetchInfo.end;
+                            // 月内に収めたイベントリスト
+                            let filtered = allEvents.map(ev => {
+                                let evStart = new Date(ev.start);
+                                let evEnd = new Date(ev.end);
+                                // 月内に収める
+                                let newStart = evStart < startMonth ? startMonth : evStart;
+                                let newEnd = evEnd > endMonth ? endMonth : evEnd;
+                                // 月内に1日でもかかっていれば表示
+                                if (newEnd > newStart) {
+                                    return {
+                                        ...ev,
+                                        start: newStart.toISOString().slice(0,10),
+                                        end: newEnd.toISOString().slice(0,10)
+                                    };
+                                } else {
+                                    return null;
+                                }
+                            }).filter(e => e);
+                            successCallback(filtered);
+                        }
+                    });
+                    calendar.render();
+                });
+        }
+    });
+    </script>
 </html>

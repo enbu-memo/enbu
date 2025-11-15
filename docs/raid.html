@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レイド評価 | テストサイト</title>
+        <title>大将評価【レイド】</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レイド評価 | テストサイト</title>
+    <title>大将評価【レイド】</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -39,23 +40,22 @@
     <div class="container">
         <main>
             <section>
-                <h2>大将teir表:レイド編(2025/11/13更新)</h2>
+                <h2>大将評価【レイド】</h2>
             <h4>総評</h4>
             フェス大将カードの台頭</br>
             ・フェス大将カードがどの点においても強い印象</br>
             ・フェスカードは通常カードに比べて特攻になる回数が多い(2025年時点)</br>
             ・現時点では通常カードとフェスカードにかかる大将ガチャ券のコストは同じであるため</br>
              廃課金者以外はフェスまで大将ガチャ券を集め、フェスで全投入がよいのではないだろうか
-
+            <hr class="section-divider">
             <h4>評価基準</h4>
-            <h3>レイド</h3>
             <table class="border">
                 <thead>
                     <tr><th class="col1">評価項目</th><th class="col2">評価基準</th></tr>
                 </thead>
                 <tbody class="table-common">
                     <tr><td class="col1">奥義</td><td class="col2">チームで採用したい奥義かどうか</td></tr>
-                    <tr><td class="col1">大将スキル</td><td class="col2">倍率の高さ バフデバフ付きであるか</td></tr>
+                    <tr><td class="col1">大将スキル</td><td class="col2">倍率の高さ<br>バフデバフ付きであるか</td></tr>
                     <tr><td class="col1">補助スキル</td><td class="col2">補助の数が多い(2個)</td></tr>
                 </tbody>
             </table>
@@ -64,15 +64,15 @@
                     <tr><th class="col1">評価</th><th class="col2">補足</th></tr>
                 </thead>
                 <tbody class="table-common">
-                    <tr><td class="col1">S＋</td><td class="col2">特攻時は人権 特攻なしですら採用したい</td></tr>
-                    <tr><td class="col1">S</td><td class="col2">特攻時はデッキに入る 特攻なしのときも選択肢に入る</td></tr>
+                    <tr><td class="col1">S＋</td><td class="col2">特攻時は人権<br>特攻なしですら採用したい</td></tr>
+                    <tr><td class="col1">S</td><td class="col2">特攻時はデッキに入る<br>特攻なしのときも選択肢に入る</td></tr>
                     <tr><td class="col1">A</td><td class="col2">特攻時は育成状況に応じてデッキに入る</td></tr>
                     <tr><td class="col1">B</td><td class="col2">特攻時は育成状況に応じて選択肢に入る</td></tr>
                     <tr><td class="col1">C</td><td class="col2">デッキに入らない ※更新対象外</td></tr>
                 </tbody>
             </table>
-
-            <h4>A</h4>
+            <hr class="section-divider">
+            <h4>攻撃大将</h4>
             <div class="table-scroll">
             <table name="A" class="card-table card-table-type">
                 <thead class="card-table-type">
@@ -87,8 +87,8 @@
                 </tbody>
             </table>
             </div>
-
-            <h4>B</h4>
+            <hr class="section-divider">
+            <h4>計略大将</h4>
             <div class="table-scroll">
             <table name="B" class="card-table card-table-type">
                 <thead class="card-table-type">
@@ -99,12 +99,12 @@
                     <tr><td>S</td><td></td></tr>
                     <tr><td>A</td><td></td></tr>
                     <tr><td>B</td><td></td></tr>
-                    <tr><td>C</td><td></td></tr>
+                    <tr><td>C</td><td><img src="img/TA001.png" alt="TA001" style="height:64px;width:64px;vertical-align:middle;"></td></tr>
                 </tbody>
             </table>
             </div>
-
-            <h4>C</h4>
+            <hr class="section-divider">
+            <h4>応援大将</h4>
             <div class="table-scroll">
             <table name="C" class="card-table card-table-type">
                 <thead class="card-table-type">
@@ -125,4 +125,19 @@
         <p>&copy; 2025 サイト</p>
     </footer>
 </body>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
 </html>

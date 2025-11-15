@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>合戦評価 | テストサイト</title>
+        <title>大将評価【合戦】</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>合戦評価 | テストサイト</title>
+    <title>大将評価【合戦】</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -39,7 +40,7 @@
     <div class="container">
         <main>
             <section>
-                <h2>大将teir表:合戦編(2025/11/13更新)</h2>
+                <h2>大将評価【合戦】</h2>
             <h4>総評</h4>
             流行の系統</br>
             ・[攻撃]受退・回数・勇猛軸は基本的に採用されている気がする</br>
@@ -47,14 +48,14 @@
             ・[計略]受退・与退・勇猛軸は基本的に採用されている気がする</br>
             ・[計略]回数は大将カードの枠が足りないのと攻撃よりも火力が足りていない印象</br>
             ・[応援]遊撃の有無で前ヒットしないカードの入れ替わりがある程度</br>
+            <hr class="section-divider">
             <h4>評価基準</h4>
-            <h3>合戦</h3>
             <table class="border">
                 <thead>
                     <tr><th class="col1">評価項目</th><th class="col2">評価基準</th></tr>
                 </thead>
                 <tbody class="table-common">
-                    <tr><td class="col1">大将スキル</td><td class="col2">汎用性の高さ 環境に適した系統のスキルかどうか</td></tr>
+                    <tr><td class="col1">大将スキル</td><td class="col2">汎用性の高さ<br>環境に適した系統のスキルかどうか</td></tr>
                     <tr><td class="col1">大将合戦時効果</td><td class="col2">環境に適した系統の合戦時効果かどうか</td></tr>
                 </tbody>
             </table>
@@ -69,8 +70,8 @@
                     <tr><td class="col1">△</td><td class="col2">基本的に不採用</td></tr>
                 </tbody>
             </table>
-
-            <h4>A</h4>
+            <hr class="section-divider">
+            <h4>攻撃大将</h4>
             <div class="table-scroll">
             <table name="A" class="card-table card-table-type">
                 <thead class="card-table-type">
@@ -84,8 +85,8 @@
                 </tbody>
             </table>
             </div>
-
-            <h4>B</h4>
+            <hr class="section-divider">
+            <h4>計略大将</h4>
             <div class="table-scroll">
             <table name="B" class="card-table card-table-type">
                 <thead class="card-table-type">
@@ -99,8 +100,8 @@
                 </tbody>
             </table>
             </div>
-
-            <h4>C</h4>
+            <hr class="section-divider">
+            <h4>応援大将</h4>
             <div class="table-scroll">
             <table name="C" class="card-table card-table-type">
                 <thead class="card-table-type">
@@ -120,4 +121,19 @@
         <p>&copy; 2025 サイト</p>
     </footer>
 </body>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
 </html>
