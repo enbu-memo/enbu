@@ -7,27 +7,24 @@
     }
 }
 @media (max-width: 600px) {
-    .table-scroll img {
+    .table-scroll img,
+    table img {
         width: 32px !important;
         height: 32px !important;
     }
 }
 @media (min-width: 601px) {
-    .details th.col1, .details td.col1,
-    .border th.col1, .border td.col1,
     table[name="A"] th.col1, table[name="A"] td.col1,
     table[name="B"] th.col1, table[name="B"] td.col1,
     table[name="C"] th.col1, table[name="C"] td.col1 {
-        width: 10px !important;
-        min-width: 10px !important;
+        width: 40px !important;
+        min-width: 40px !important;
     }
-    .details th.col2, .details td.col2,
-    .border th.col2, .border td.col2,
     table[name="A"] th.col2, table[name="A"] td.col2,
     table[name="B"] th.col2, table[name="B"] td.col2,
     table[name="C"] th.col2, table[name="C"] td.col2 {
-        min-width: 180px;
-        width: 180px;
+        min-width: 180px !important;
+        width: 180px !important;
     }
 }
 @media (min-width: 601px) {
@@ -42,38 +39,18 @@
                 /* スマホ用テーブル列幅 - 評価・補足テーブル基準 */
                 .details th.col1, .details td.col1,
                 .border th.col1, .border td.col1,
-                table[name="A"] th.col1, table[name="A"] td.col1,
-                table[name="B"] th.col1, table[name="B"] td.col1,
-                table[name="C"] th.col1, table[name="C"] td.col1 {
-                    width: 32px;
-                    min-width: 32px;
-                }
-                .details th.col2, .details td.col2,
-                .border th.col2, .border td.col2,
-                table[name="A"] th.col2, table[name="A"] td.col2,
-                table[name="B"] th.col2, table[name="B"] td.col2,
-                table[name="C"] th.col2, table[name="C"] td.col2 {
-                    min-width: 80px;
-                    width: 80px;
-                }
-            table[name="A"] th.col1, table[name="A"] td.col1,
-            table[name="B"] th.col1, table[name="B"] td.col1,
-            table[name="C"] th.col1, table[name="C"] td.col1 {
-                min-width: 40px;
-                width: 40px;
-            }
-            table[name="A"] th.col2, table[name="A"] td.col2,
-            table[name="B"] th.col2, table[name="B"] td.col2,
-            table[name="C"] th.col2, table[name="C"] td.col2 {
-                min-width: 60px;
-                width: 60px;
-            }
-        table[name="A"] th.col2, table[name="A"] td.col2,
-        table[name="B"] th.col2, table[name="B"] td.col2,
-        table[name="C"] th.col2, table[name="C"] td.col2 {
-            min-width: 80px;
-            width: 80px;
-        }
+    table[name="A"] th.col1, table[name="A"] td.col1,
+    table[name="B"] th.col1, table[name="B"] td.col1,
+    table[name="C"] th.col1, table[name="C"] td.col1 {
+        width: 32px !important;
+        min-width: 32px !important;
+    }
+    table[name="A"] th.col2, table[name="A"] td.col2,
+    table[name="B"] th.col2, table[name="B"] td.col2,
+    table[name="C"] th.col2, table[name="C"] td.col2 {
+        min-width: 80px !important;
+        width: 80px !important;
+    }
     .table-scroll {
         overflow-x: auto;
     }
@@ -348,6 +325,9 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 12px;
+}
+table[name="A"], table[name="B"], table[name="C"] {
+    table-layout: fixed;
 }
 th, td {
     border: 1px solid #ccc;
