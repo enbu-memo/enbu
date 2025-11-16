@@ -9,8 +9,8 @@
 @media (max-width: 600px) {
     .table-scroll img,
     table img {
-        width: 42px !important;
-        height: 42px !important;
+        width: 44px !important;
+        height: 44px !important;
     }
 }
 @media (min-width: 601px) {
