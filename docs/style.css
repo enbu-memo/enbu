@@ -74,16 +74,11 @@
         word-break: break-word;
     }
 }
-/* 2列目だけ左寄せ */
-.border th.col2,
+/* 2列目のテーブルデータのみ左寄せ */
 .border td.col2,
-.details th.col2,
 .details td.col2,
-table[name="A"] th.col2,
 table[name="A"] td.col2,
-table[name="B"] th.col2,
 table[name="B"] td.col2,
-table[name="C"] th.col2,
 table[name="C"] td.col2 {
     text-align: left !important;
 }
