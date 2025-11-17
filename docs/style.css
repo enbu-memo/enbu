@@ -1,3 +1,21 @@
+@media (max-width: 600px) {
+    .last-update {
+        font-size: 0.3em !important;
+    }
+}
+/* ページ右上の最終更新日表示 */
+.last-update {
+    right: 24px;
+    font-size: 0.85em;
+    color: #888;
+    float: right;
+    margin-top: -15px;
+}
+@media (max-width: 600px) {
+    .sohyo {
+        font-size: 0.65em;
+    }
+}
 /* PC用テーブル列幅（601px以上） - 評価・補足テーブル基準 */
 /* テーブル内画像サイズ（PC:64x64, スマホ:32x32） */
 @media (min-width: 601px) {
@@ -382,7 +400,7 @@ footer {
     h4 {
         font-size: 1em;
         color: #222;
-        font-weight: 500;
+        font-weight: bold;
         letter-spacing: 0.01em;
     }
     
