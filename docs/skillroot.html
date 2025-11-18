@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillRootデータ表示</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+        <div class="last-update">最終更新日: 2025年11月19日</div>
+        <main>
+            <section>
+                <h2>スキル玉合成ルート</h2>
+                                <div class="search-skill">
+                                    <div class="search-row search-checkboxes">
+                                        <label><input type="checkbox" class="type-filter" value="攻撃" checked>攻撃</label>
+                                        <label><input type="checkbox" class="type-filter" value="計略" checked>計略</label>
+                                        <label><input type="checkbox" class="type-filter" value="応援" checked>応援</label>
+                                        <label><input type="checkbox" class="type-filter" value="回復" checked>回復</label>
+                                    </div>
+                                    <div class="search-row search-box">
+                                        <label>検索: <input type="text" id="search-box" placeholder="スキル名で検索"></label>
+                                    </div>
+                                    <div id="output"></div>
+                                </div>
+                <div id="sheet-output"></div>
+                <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+            </section>
+        </main>
+        <footer>
+        <p>&copy; 2025 炎舞の備忘録</p>
+        </footer>
+    </div>
+    <script>
+    const excelPath = 'skillroot.xlsx';
+    let tableData = [];
+    let headers = [];
+    fetch(excelPath)
+        .then(res => res.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+            const sheetName = 'search-skill';
+            const sheet = workbook.Sheets[sheetName];
+            if (!sheet) {
+                document.getElementById('output').innerHTML = '<p style="color:red">指定シートが見つかりません。</p>';
+                return;
+            }
+            const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+            headers = json[0];
+            tableData = json.slice(1);
+            renderTable();
+        })
+        .catch(err => {
+            document.getElementById('output').innerHTML = '<p style="color:red">Excelファイルの読み込みに失敗しました。</p>';
+        });
+
+    function renderTable() {
+        const searchValue = document.getElementById('search-box').value.trim();
+        // チェックされた種類を取得
+        const checkedTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(cb => cb.value);
+        let html = '<table id="excel-table">';
+        // ヘッダー（2・3列目を結合、3列目は非表示）
+        html += '<tr>';
+        html += `<th>${headers[0] ?? ''}</th>`;
+        html += `<th colspan="2">${headers[1] ?? ''}</th>`;
+        for(let i=3; i<headers.length; i++) {
+            html += `<th>${headers[i]}</th>`;
+        }
+        html += '</tr>';
+        // データ
+        tableData.forEach(row => {
+            const type = row[0] ? row[0].toString() : '';
+            const col2 = row[1] ? row[1].toString() : '';
+            const col3 = row[2] ? row[2].toString() : '';
+            // 種類フィルタ
+            if(checkedTypes.length > 0 && !checkedTypes.includes(type)) return;
+            // 検索フィルタ
+            if(searchValue && !(col2.includes(searchValue) || col3.includes(searchValue))) return;
+            html += '<tr class="skill-row">';
+            row.forEach((cell, idx) => {
+                if(idx === 2) return; // 3列目は非表示
+                if(idx === 3 && cell) {
+                    const filename = `${cell}.png`;
+                    html += `<td data-imgname="${cell}"><img src="img/skill/${filename}" alt="${filename}"></td>`;
+                } else {
+                    html += `<td>${cell ?? ''}</td>`;
+                }
+            });
+            html += '</tr>';
+        });
+        html += '</table>';
+        document.getElementById('output').innerHTML = html;
+    }
+    // 検索ボックスイベント
+    document.addEventListener('input', function(e) {
+        if(e.target.id === 'search-box' || e.target.classList.contains('type-filter')) {
+            renderTable();
+        }
+    });
+    // 行クリックイベント
+    document.addEventListener('click', async function(e) {
+        const tr = e.target.closest('tr.skill-row');
+        if(tr) {
+            // 画像名（拡張子除く）取得
+            let imgName = '';
+            tr.querySelectorAll('td').forEach(td => {
+                if(td.dataset.imgname) imgName = td.dataset.imgname;
+            });
+                if(!imgName) return; 
+            // 検索UIを非表示
+            const searchSkillDiv = document.querySelector('.search-skill');
+            if(searchSkillDiv) searchSkillDiv.style.display = 'none';
+            // Excelから該当シート取得
+            const res = await fetch(excelPath);
+            const data = await res.arrayBuffer();
+            const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+            const sheet = workbook.Sheets[imgName];
+            if(!sheet) {
+                document.getElementById('sheet-output').innerHTML = `<p style="color:red">シート『${imgName}』が見つかりません。</p>`;
+                return;
+            }
+            const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+            // 選択行の2列目データ取得
+            let selectedName = '';
+            if(tr) {
+                const tds = tr.querySelectorAll('td');
+                // 1列目: 種類, 2列目: 名前, 3列目:（非表示）, 4列目:画像
+                if(tds.length > 1) selectedName = tds[1].textContent;
+            }
+            // タイトル右端に戻るボタン（黒基調・小さめ）
+            let titleHtml = `<div style="display:flex;align-items:center;justify-content:space-between;gap:1em;margin-bottom:0.5em;">
+                <h4 style="margin:0;">【${selectedName}】の合成ルート</h4>
+                <button id="back-to-list" style="padding:0.3em 0.9em;font-size:0.95em;background:#222;color:#fff;border:none;border-radius:4px;cursor:pointer;">戻る</button>
+            </div>`;
+            let html = titleHtml + `<table id="excel-table2">`;
+            // ヘッダー（2～4列目＋画像列）
+            html += '<tr>';
+            for(let j=1;j<=3;j++) html += `<th>${json[0][j] ?? ''}</th>`;
+            html += '<th>スキル</th>';
+            html += '</tr>';
+            // 2行目データ（json[1]）をテーブル外で表示
+            // 必要将星（2列目）の合計値を計算
+            let totalStar = 0;
+            for(let i=1; i<json.length; i++) {
+                const row = json[i];
+                const val = Number(row[2]);
+                if(!isNaN(val)) totalStar += val;
+            }
+            let secondRow = json[1];
+            let secondRowHtml = '';
+            let know = '';
+            if(secondRow) {
+                know = secondRow[3] ?? '';
+            }
+            secondRowHtml = '<div class="second-row-info" style="padding:0.5em 1em;background:#f9f9f9;border-radius:6px;border:1px solid #eee;">';
+            secondRowHtml += `<span style="margin-right:1.5em;">将星の合計: ${totalStar}</span><br>`;
+            if(know !== '') secondRowHtml += `<span style="margin-right:1.5em;">緑玉の合計: ${know}</span>`;
+            secondRowHtml += '</div>';
+            // 注釈を追加
+            secondRowHtml += '<div class="sohyo" style="color:#b77;padding:0em 1em;">※大成功を考慮しているため必要数は前後します。<br>※赤背景の箇所は大成功なしで計算しています。</div>';
+            // データ
+            for(let i=1; i<json.length; i++) {
+                const row = json[i];
+                // 1列目が1なら色変更
+                const highlight = row[0] === 1 ? ' style="background:#ffb6c1"' : '';
+                html += `<tr${highlight}>`;
+                for(let j=1;j<=3;j++) html += `<td>${row[j] ?? ''}</td>`;
+                // 4列目に画像
+                const imgName = row[4] ? row[4].toString() : '';
+                if(imgName) {
+                    html += `<td><img src="img/skill/${imgName}.png" alt="${imgName}" style="max-width:120px;max-height:120px;"></td>`;
+                } else {
+                    html += '<td></td>';
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+            document.getElementById('sheet-output').innerHTML = secondRowHtml + html;
+            // 戻るボタンイベント
+            document.getElementById('back-to-list').onclick = function() {
+                document.querySelector('.search-skill').style.display = '';
+                document.getElementById('sheet-output').innerHTML = '';
+            }
+        }
+    });
+    </script>
+</html>
