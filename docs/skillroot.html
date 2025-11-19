@@ -82,6 +82,8 @@
         <p>&copy; 2025 炎舞の備忘録</p>
         </footer>
     </div>
+</body>
+    <button id="backToTop" title="一番上に戻る">↑</button>
     <script>
     const excelPath = 'skillroot.xlsm';
     let tableData = [];
@@ -233,6 +235,18 @@
                 document.getElementById('sheet-output').innerHTML = '';
             }
         }
+    });
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     </script>
 </html>
