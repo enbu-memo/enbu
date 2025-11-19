@@ -34,6 +34,34 @@
         <main>
             <section>
                 <h2>スキル玉合成ルート</h2>
+                <h4>合成のルート選定優先度</h4>
+                <table class="priority-table" style="margin-bottom:0.5em;width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <colgroup>
+                    <col style="width:80px;">
+                    <col style="width:auto;">
+                  </colgroup>
+                  <thead>
+                    <tr style="background:#eee;font-weight:bold;">
+                      <th>優先度</th>
+                      <th>選定基準</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td style="text-align:left;">使用する緑玉の合計が少ないルート</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td style="text-align:left;">使用する将星の合計が少ないルート(※例外あり)</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td style="text-align:left;">合成する回数が多いルート(大成功確率⤴)</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="sohyo" style="text-align:right; margin-left:1em; margin-bottom:1.2em;">※完成直前の合成は大成功狙いで3を優先</div>
                                 <div class="search-skill">
                                     <div class="search-row search-checkboxes">
                                         <label><input type="checkbox" class="type-filter" value="攻撃" checked>攻撃</label>

@@ -463,6 +463,8 @@ footer {
         color: #222;
         font-weight: bold;
         letter-spacing: 0.01em;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     
     table {
