@@ -495,3 +495,7 @@ footer {
         touch-action: manipulation;
     }
 }
+#output {
+    max-height: 400px;
+    overflow-y: auto;
+}
