@@ -246,7 +246,7 @@ h3.section-title {
 .section-divider {
     border: none;
     border-top: 2px solid #eee;
-    margin: 32px 0 18px 0;
+    margin: 18px 0 10px 0;
 }
 .section-title {
     margin-bottom: 18px;
@@ -498,4 +498,15 @@ footer {
 #output {
     max-height: 400px;
     overflow-y: auto;
+}
+.point {
+    border: 4px double #ffd600;
+    background: #fffde7;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 18px 0;
+    font-size: 1.08em;
+    color: #222;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255,214,0,0.08);
 }

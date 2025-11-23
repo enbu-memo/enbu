@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0QLBFCRRHD');
+</script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デッキ構築【レイド】</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+        <div class="last-update">最終更新日: 2025年11月23日</div>
+        <main>
+            <section>
+                <h2>デッキ構築【レイド】</h2>
+                <nav class="toc">
+                    <h3>目次</h3>
+                    <ul>
+                        <li><a href="#topic">はじめに大事なこと</a></li>
+                        <li><a href="#section001">有利な兵種を筆頭に編成する</a></li>
+                        <li><a href="#section002">レイドの特攻倍率を確認する</a></li>
+                        <li><a href="#section003">役割を意識する</a></li>
+                    </ul>
+                </nav>
+                <h4 id="topic">はじめに大事なこと</h4>
+                <div class="sohyo" style="color: #222;">
+                <div style="font-weight: 700;">  
+                    ★レイドの討伐報酬より美味しいイベントはない</div></br>
+                    ・スキル玉合成には必須コンテンツ</br>
+                    ・カード集めでも最高効率</br>
+                <div style="height:10px;"></div> 
+                <div style="font-weight: 700;">                 
+                    ★連合に必ず参加しよう</div></br>
+                    ・ソロ攻略は難しいため、複数人で攻略が圧倒的に有利</br>
+                    ・画面下部の連合募集チャットから参加がおすすめ
+                </div>
+                <hr class="section-divider">                
+                <h4 id="section001">有利な兵種を筆頭に編成する</h4>                
+                <div class="sohyo">
+                ・三すくみを意識して、有利な兵種を必ず
+                筆頭に編成</br>
+                （例：レイドボスが歩兵の場合は筆頭は弓兵から選ぶ）
+                <img src="img/raid/RA001.png" alt="RA001" style="display:block;margin:10px;max-width:120px;">
+                <div class="point">
+                ☞有利な兵種を意識するのは筆頭の大将のみでいい</br>
+                ☞筆頭兵種の相性から全体のダメージに補正がかかる
+                </div>
+                </div>
+                <hr class="section-divider">   
+                <h4 id="section002">レイドの特攻倍率を確認する</h4>
+                <div class="sohyo">
+                ・レイドが始まったら[TOP]→[イベント特攻]を必ず確認</br>
+                ・新しい大将は特攻倍率が高いため優先的に編成
+                <img src="img/raid/RA002.png" alt="RA002" style="display:block;margin:10px;max-width:120px;">
+                <div class="point">
+                ☞特攻の大将を詰め込めば強いわけではない</br>
+                ☞育成状況や役割に応じて特攻なしの大将も使う
+                </div>
+                </div>
+                <hr class="section-divider">                   
+                <h4 id="section003">役割を意識する</h4>
+                <div class="point">
+                ☞途中で退却しにくいデッキ作りが大切</br>
+                </div>
+                <section>
+                    <h4 id="statusup">アタッカー</h4>
+                <div class="sohyo">   
+                    ・手持ちと相談して攻撃か計略に必ず寄せる</br>
+                    ・発動する補助スキルの種類が多いとダメージを伸ばせる</br>
+                <table class="border">
+                    <thead>
+                        <tr><th class="col2">補助スキル複数持ちの大将</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                    <tr>   <td class="col2">
+                        <img src="img/taisho/TB008.png" alt="TB008">
+                        <img src="img/taisho/TC007.png" alt="TC007">
+                        <img src="img/taisho/TA006.png" alt="TA006">
+                        <img src="img/taisho/TA007.png" alt="TA007">
+                        <img src="img/taisho/TA010.png" alt="TA010">
+                        <img src="img/taisho/TB004.png" alt="TB004">
+                    </td></tr>
+                    </tbody>                 
+                </table>                    
+                    <div style="height:10px;"></div>   
+                    ・上げ下げが付属するスキルは全員のダメージを伸ばせる</br>
+                <table class="border">
+                    <thead>
+                        <tr><th class="col2">上げ下げスキル持ちの大将</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                    <tr>   <td class="col2">
+                        <img src="img/taisho/TC007.png" alt="TC007">
+                        <img src="img/taisho/TB011.png" alt="TB011">
+                        <img src="img/taisho/TA007.png" alt="TA007">
+                        <img src="img/taisho/TC008.png" alt="TC008">
+                        <img src="img/taisho/TA011.png" alt="TA011">
+                        <img src="img/taisho/TA010.png" alt="TA010">
+                        <img src="img/taisho/TB010.png" alt="TB010">
+                    </td></tr>
+                    </tbody>                    
+                </table>
+                    <div style="height:10px;"></div>   
+                    ・奥義はダメージ、補助発動率アップが効果的</br>
+                <table class="border">
+                    <thead>
+                        <tr><th class="col2">効果が優秀な奥義</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                    <tr>   <td class="col2">
+                        <img src="img/skill/SE001.png" alt="SE001">
+                        <img src="img/skill/SE002.png" alt="SE002">
+                        <img src="img/skill/SE003.png" alt="SE003">
+                        <img src="img/skill/SE004.png" alt="SE004">
+                        <img src="img/skill/SE005.png" alt="SE005">
+                    </td></tr>
+                    </tbody>                    
+                </table>                    
+                </div>  
+                </section>
+                <section>
+                    <h4 id="statusup">サポーター</h4>
+                    <div class="sohyo">   
+                    ・手持ちによっては全員アタッカーが有効な場合もある</br>
+                    ・複数の部隊に効果があるスキルが効果的</br>
+                <table class="border">
+                    <thead>
+                        <tr><th class="col2">5部隊ヒットスキル持ちの大将(4凸時点)</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                    <tr>   <td class="col2">
+                        <img src="img/taisho/TA008.png" alt="TA008">
+                        <img src="img/taisho/TB007.png" alt="TB007">
+                        <img src="img/taisho/TC004.png" alt="TC004">
+                    </td></tr>
+                    </tbody>                    
+                </table>                     
+                    </div>
+                <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+                </section>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 炎舞の備忘録</p>
+    </footer>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
+</body>
+</html>
