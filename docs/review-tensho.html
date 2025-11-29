@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0QLBFCRRHD');
+</script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>武将智将評価【天将】</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+        <div class="last-update">最終更新日: 2025年11月29日</div>
+        <main>
+            <section>
+                <h2>天将カード評価</h2>
+                <div id="output"></div>
+                <div id="sheet-output"></div>
+                <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+            </section>
+        </main>
+        <footer>
+        <p>&copy; 2025 炎舞の備忘録</p>
+        </footer>
+    </div>
+</body>
+<script>
+    const excelPath = 'cardreview.xlsx';
+    let tableData = [];
+    let headers = [];
+    fetch(excelPath)
+        .then(res => res.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+            const sheetName = 'tensholist';
+            const sheet = workbook.Sheets[sheetName];
+            if (!sheet) {
+                document.getElementById('output').innerHTML = '<p style="color:red">指定シートが見つかりません。</p>';
+                return;
+            }
+            const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+            headers = json[0];
+            tableData = json.slice(1);
+            renderTable();
+        })
+        .catch(err => {
+            document.getElementById('output').innerHTML = '<p style="color:red">Excelファイルの読み込みに失敗しました。</p>';
+        });
+</script>            
+</html>
