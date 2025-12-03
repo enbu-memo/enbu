@@ -74,5 +74,28 @@
         .catch(err => {
             document.getElementById('output').innerHTML = '<p style="color:red">Excelファイルの読み込みに失敗しました。</p>';
         });
+        // ExcelデータをHTMLテーブルとして表示する関数
+        function renderTable() {
+            if (!headers.length || !tableData.length) {
+                document.getElementById('output').innerHTML = '<p>データがありません。</p>';
+                return;
+            }
+            let html = '<table class="excel-table">';
+            html += '<thead><tr>';
+            headers.forEach(header => {
+                html += `<th>${header}</th>`;
+            });
+            html += '</tr></thead>';
+            html += '<tbody>';
+            tableData.forEach(row => {
+                html += '<tr>';
+                row.forEach(cell => {
+                    html += `<td>${cell !== undefined ? cell : ''}</td>`;
+                });
+                html += '</tr>';
+            });
+            html += '</tbody></table>';
+            document.getElementById('output').innerHTML = html;
+        }
 </script>            
 </html>
