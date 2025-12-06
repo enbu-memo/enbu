@@ -1,3 +1,32 @@
+@media (min-width: 601px) {
+    .excel-table-img {
+        width: 64px !important;
+        height: 64px !important;
+        max-width: 64px !important;
+        max-height: 64px !important;
+    }
+}
+/* 評価ランク文字色 */
+.rank-ss {
+    color: #8000ff;
+    font-weight: bold;
+}
+.rank-s {
+    color: #e75480;
+    font-weight: bold;
+}
+.rank-a {
+    color: #e60000;
+    font-weight: bold;
+}
+.rank-b {
+    color: #ff8000;
+    font-weight: bold;
+}
+.rank-c {
+    color: #00b050;
+    font-weight: bold;
+}
 /* 一覧・詳細テーブル画像サイズ（PCのみ） */
 @media (min-width: 601px) {
     #excel-table img,
