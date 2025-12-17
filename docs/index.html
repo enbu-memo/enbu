@@ -40,7 +40,7 @@
             });
     </script>
     <div class="container">
-        <div class="last-update">最終更新日: 2025年12月6日</div>
+        <div class="last-update">最終更新日: 2025年12月18日</div>
         <main>
             <section>
                 <h2>イベントカレンダー</h2>
@@ -129,6 +129,16 @@
                                 <td data-date="2025-12-6">2025/12/6</td>
                                 <td>更新</td>
                             </tr>
+                            <tr>
+                                <td><a href="review-kassen.html" style="text-decoration:underline;color:#1976d2;">大将-合戦</a></td>
+                                <td data-date="2025-12-17">2025/12/17</td>
+                                <td>更新</td>
+                            </tr>
+                             <tr>
+                                <td><a href="review-raid.html" style="text-decoration:underline;color:#1976d2;">大将-レイド</a></td>
+                                <td data-date="2025-12-17">2025/12/17</td>
+                                <td>更新</td>
+                             </tr>                            
                             <!-- ここに行を追加しても5件を超えたらスクロールされます -->
                         </tbody>
                     </table>
@@ -163,10 +173,13 @@
             rows.sort((a, b) => {
                 const dateA = a.getElementsByTagName('td')[1].getAttribute('data-date');
                 const dateB = b.getElementsByTagName('td')[1].getAttribute('data-date');
+                // 日付をDateオブジェクトに変換
+                const dA = new Date(dateA.replace(/-/g, '/'));
+                const dB = new Date(dateB.replace(/-/g, '/'));
                 if (asc) {
-                    return dateA.localeCompare(dateB);
+                    return dA - dB;
                 } else {
-                    return dateB.localeCompare(dateA);
+                    return dB - dA;
                 }
             });
             rows.forEach(row => tbody.appendChild(row));
