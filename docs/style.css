@@ -1,3 +1,8 @@
+/* 汎用 赤文字・太字用クラス */
+.text-red {
+    color: #e60000 !important;
+    font-weight: bold !important;
+}
 @media (min-width: 601px) {
     .excel-table-img {
         width: 64px !important;

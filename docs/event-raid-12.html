@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0QLBFCRRHD');
+</script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デッキ構築【レイド】</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+        <div class="last-update">最終更新日: 2025年12月20日</div>
+        <main>
+            <section>
+                <h2>レイド攻略【12月】</h2>
+                <nav class="toc">
+                    <h3>目次</h3>
+                    <ul>
+                        <li><a href="#topic">はじめに</a></li>
+                        <li><a href="#section001">攻略ポイント</a></li>
+                        <li><a href="#section002">上位の編成統計</a></li>
+                                    <ul class="sub-toc">
+                                        <li><a href="#kougeki">攻撃デッキ</a></li>
+                                        <li><a href="#keiryaku">計略デッキ</a></li>
+                                    </ul>
+                    </ul>
+                </nav>
+                <hr class="section-divider">                   
+                <h4 id="topic">はじめに</h4>
+                <div class="sohyo" style="color: #222;">
+                <div style="font-weight: 700;"><a href="deck-raid.html" style="color:inherit;text-decoration:underline;">★共通の攻略はこちら</a></div>
+                <div class="point" style="text-align: 30px;">            
+                    <span class="text-red">★周回はLv29未満が推奨</span></br>
+                    ・Lv30は被ダメがきつく事故率も高い</br>
+                    ・Lv29以下の難易度が以前より易しい</br>
+                    ・周回効率もLv29以下が勝る</br>
+                    ☞どの層もLv30周回のメリット無し
+                </div> 
+                <hr class="section-divider">                
+                <h4 id="section001">攻略ポイント</h4>                
+                <div class="point" style="text-align: 30px;">            
+                <span class="text-red">Lv30やらないなら特になし!いつも通り!</span></br>
+                </div> 
+                <table class="border">
+                    <thead>
+                        <tr><th class="col2">優先度高い奥義</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                    <tr>   <td class="col2">
+                        <img src="img/skill/SE004.png" alt="SE004">
+                        <img src="img/skill/SE006.png" alt="SE006">
+                        <img src="img/skill/SE001.png" alt="SE001">
+                        <img src="img/skill/SE002.png" alt="SE002">
+                        <img src="img/skill/SE003.png" alt="SE003">
+                        <img src="img/skill/SE005.png" alt="SE005">
+                        <img src="img/skill/SE007.png" alt="SE007">
+                    </td></tr>
+                    </tbody>                    
+                </table>
+                <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>                 
+                <hr class="section-divider">   
+                <h4 id="section002">上位の編成統計</h4>
+                 <table class="border">
+                    <thead>
+                        <tr><th class="col1">集計期間</th><th class="col2">2025/12/20午前中</th></tr>
+                        <tr><th class="col1">集計対象</th><th class="col2">個人ランキングTOP100</th></tr>                        
+                    </thead>
+                </table>               
+                <h5 id="kougeki">攻撃デッキ</h5>
+                <img src="img/raid/RA004.png" alt="RA001" style="display:block;margin:10px;max-width:250px;">
+                <div class="sohyo">
+                ・真伊達と真前田はほぼ確定</br>
+                ・3枠目は斎藤か島津が9割以上</br>
+                ・斎藤は性能的に育てている人が少ない印象</br>
+                ・蛇蝎が強力なため斎藤4凸以上なら入れた方が良い</br>
+                </div>
+                <hr class="section-divider">   
+                <h5 id="keiryaku">計略デッキ</h5>
+                <img src="img/raid/RA005.png" alt="RA001" style="display:block;margin:10px;max-width:250px;">
+                <div class="sohyo">
+                ・クリ宇喜多と真黒田はほぼ確定</br>
+                ・3枠目は真織田か千利休かハロ黒田が9割以上</br>
+                ・ハロ黒田は性能的に育てている人が少ない印象</br>
+                ・ハロ黒8凸>織田8凸>ハロ黒4凸>織田4凸>利休8凸</br>
+                ・現人神はソロ以外必ず欲しい</br>
+                ・四面はLv29以下であれば不要</br>
+                </div>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 炎舞の備忘録</p>
+    </footer>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
+</body>
+</html>
