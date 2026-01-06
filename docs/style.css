@@ -22,7 +22,7 @@
 }
 .new-badge {
     display: inline-block;
-    color: #ff1744;
+    color: red;
     font-size: 0.9em;
     font-weight: bold;
     border-radius: 8px;
