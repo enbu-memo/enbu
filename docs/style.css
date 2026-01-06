@@ -23,7 +23,7 @@
 .new-badge {
     display: inline-block;
     color: red;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: bold;
     border-radius: 8px;
     padding: 0px 0px 0px 0px;
@@ -136,7 +136,7 @@
 }
 @media (max-width: 600px) {
     .last-update {
-        font-size: 0.3em !important;
+        font-size: 0.25em !important;
     }
 }
 /* ページ右上の最終更新日表示 */
@@ -566,7 +566,7 @@ footer {
     
     #sortToggle {
         font-size: 0.8em;
-        padding: 4px 8px;
+        padding: 2px 2px;
         touch-action: manipulation;
     }
 }
