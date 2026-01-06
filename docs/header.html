@@ -1,10 +1,20 @@
     <link rel="icon" type="image/png" href="icon.png">
 <header>
-    <h1>炎舞の備忘録</h1>
+    <h1><a href="index.html" class="nolink">炎舞の備忘録</a></h1>
+        <style>
+        /* h1タイトルのリンクをテキスト風に */
+        .nolink {
+            color: inherit !important;
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .nolink:visited {
+            color: inherit !important;
+        }
+        </style>
     <nav>
         <div class="mobile-menu-toggle">☰</div>
         <ul class="nav-menu">
-            <li><a href="index.html">トップ</a></li>
             <!-- <li>
                     <div class="dropdown">
                         <span class="dropbtn">武将智将評価</span>
@@ -53,6 +63,7 @@
                     </div>
             </li>
             <li><a href="skillroot.html">スキル玉合成ルート</a></li>
+            <li><a href="serialcode.html">シリアルコード</a></li>
         </ul>
     <style>
         /* 現在ページ・アクティブメニューの強調（PC版は下線、スマホ版は左端バー） */
@@ -206,11 +217,11 @@
         }
         .nav-menu li {
             width: 100%;
+            border-bottom: 1px solid #444;
         }
         .nav-menu a {
             width: 100%;
             border-right: none;
-            border-bottom: 1px solid #444;
             text-align: left;
             padding: 15px 24px;
         }
@@ -220,6 +231,9 @@
             background: #333;
             display: none !important;
         }
+        .dropdown-content a {
+            border-bottom: 1px solid #444;
+        }        
         .dropdown.open .dropdown-content {
             display: block !important;
         }

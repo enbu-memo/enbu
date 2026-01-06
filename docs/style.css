@@ -11,6 +11,47 @@
         max-height: 64px !important;
     }
 }
+.expired-row {
+    background: #eee !important;
+    color: #888 !important;
+}
+.copy-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.new-badge {
+    display: inline-block;
+    color: #ff1744;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 0px 0px 0px 0px;
+    vertical-align: super;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+.copy-btn {
+    background: #f5f7fa;
+    border: 1.5px solid #1976d2;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+    box-shadow: 0 1px 3px rgba(25,118,210,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.copy-btn:active {
+    background: #e3f2fd;
+    border-color: #0d47a1;
+    box-shadow: 0 0 0 2px #90caf9;
+}
+.copy-btn svg {
+    pointer-events: none;
+}
+
 /* 評価ランク文字色 */
 .rank-ss {
     color: #8000ff;

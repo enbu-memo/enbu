@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0QLBFCRRHD');
+</script>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>シリアルコード</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+    <div class="container">
+        <div class="last-update">最終更新日: 2026年1月6日</div>
+        <main>
+            <section>
+                <h2>シリアルコード<br></h2>
+                <div class="sohyo">
+                <div class="point">
+                ☞アプリペイショップで交換可能</br>
+                ☞<a href="https://app-pay.jp/app/shin-kizna" target="_blank" rel="noopener">サイトはこちら(新しいタブで開きます)</a></br>
+                </div>
+                </div>
+                <hr class="section-divider">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col1" colspan="2" style="width:40%">シリアルコード</th>
+                            <th class="col3" style="width:30%">有効期限</th>
+                            <th class="col4" style="width:30%">配布日時
+                            <button id="sortToggle" title="ソート">▼</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col1">
+                                <button class="copy-btn" data-target="serial-mochiten">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                </button>
+                            </td>
+                            <td class="col2" style="text-align:left" id="serial-mochiten">MOCHITEN</td>
+                            <td class="col3" rimit-date="2026/2/28">2026/2/28</td>
+                            <td class="col4" data-date="2026/01/06">2026/1/6</td>
+                        </tr>
+                        <tr>
+                            <td class="col1">
+                                <button class="copy-btn" data-target="serial-GOLDXMAS">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                </button>
+                            </td>
+                            <td class="col2" style="text-align:left" id="serial-GOLDXMAS">GOLDXMAS</td>
+                            <td class="col3" rimit-date="2026/1/31">2026/1/31</td>
+                            <td class="col4" data-date="2025/12/25">2025/12/25</td>
+                        </tr>
+                        <tr>
+                            <td class="col1">
+                                <button class="copy-btn" data-target="serial-2025EVE">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                </button>
+                            </td>
+                            <td class="col2" style="text-align:left" id="serial-2025EVE">2025EVE</td>
+                            <td class="col3" rimit-date="2026/1/31">2026/1/31</td>
+                            <td class="col4" data-date="2025/12/24">2025/12/24</td>
+                        </tr>  
+                        <tr>
+                            <td class="col1">
+                                <button class="copy-btn" data-target="serial-AWRD1216">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                </button>
+                            </td>
+                            <td class="col2" style="text-align:left" id="serial-AWRD1216">AWRD1216</td>
+                            <td class="col3" rimit-date="2026/1/31">2026/1/31</td>
+                            <td class="col4" data-date="2025/12/16">2025/12/16</td>
+                        </tr>  
+                        <tr>
+                            <td class="col1">
+                                <button class="copy-btn" data-target="serial-DOKUGANCHU">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                </button>
+                            </td>
+                            <td class="col2" style="text-align:left" id="serial-DOKUGANCHU">DOKUGANCHU</td>
+                            <td class="col3" rimit-date="2026/1/31">2026/1/31</td>
+                            <td class="col4" data-date="2025/12/1">2025/12/1</td>
+                        </tr>                                                                         
+                    </tbody>
+                </table>
+                <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 炎舞の備忘録</p>
+    </footer>
+</body>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <script>
+    // コピーボタンのフィードバックとコピー処理
+    document.addEventListener('DOMContentLoaded', function() {
+        // 最新data-dateのtrのcol2にNEWバッジ
+        (function() {
+            const rows = Array.from(document.querySelectorAll('table tbody tr'));
+            let latestDate = null;
+            let latestRow = null;
+            rows.forEach(row => {
+                const dateTd = row.querySelector('td[data-date]');
+                if (dateTd) {
+                    const dateStr = dateTd.getAttribute('data-date');
+                    const d = new Date(dateStr);
+                    if (!latestDate || d > latestDate) {
+                        latestDate = d;
+                        latestRow = row;
+                    }
+                }
+            });
+            if (latestRow) {
+                const col1 = latestRow.querySelector('td.col1 > .copy-btn');
+                if (col1) {
+                    const badge = document.createElement('span');
+                    badge.className = 'new-badge';
+                    badge.textContent = 'NEW';
+                    badge.title = '最新の配布';
+                    col1.style.position = 'relative';
+                    badge.style.position = 'absolute';
+                    badge.style.top = '7px';
+                    badge.style.right = '1.5px';
+                    col1.appendChild(badge);
+                }
+            }
+        })();
+        // 有効期限チェック（col3のrimit-date属性を参照）
+        const today = new Date();
+        document.querySelectorAll('table tbody tr').forEach(function(row) {
+            const rimitTd = row.querySelector('td.col3[rimit-date]');
+            if (rimitTd) {
+                const rimitStr = rimitTd.getAttribute('rimit-date');
+                const rimitDate = new Date(rimitStr);
+                if (rimitDate < today.setHours(0,0,0,0)) {
+                    row.classList.add('expired-row');
+                    const copyBtn = row.querySelector('.copy-btn');
+                    if (copyBtn) copyBtn.disabled = true;
+                }
+            }
+        });
+
+        // コピーボタンのフィードバックとコピー処理
+        document.querySelectorAll('.copy-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var id = btn.getAttribute('data-target');
+                var text = document.getElementById(id).textContent;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text);
+                } else {
+                    var temp = document.createElement('textarea');
+                    temp.value = text;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(temp);
+                }
+                // フィードバック（色変化）
+                btn.classList.add('copied');
+                btn.style.background = '#bbdefb';
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.style.background = '';
+                }, 350);
+            });
+        });
+
+        // 配布日時の昇順・降順ソート
+        const table = document.querySelector('table');
+        const sortButton = document.getElementById('sortToggle');
+        const tbody = table.getElementsByTagName('tbody')[0];
+        let sortAsc = false;
+        function sortTableByDistDate(asc = true) {
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            rows.sort((a, b) => {
+                const dateA = a.getElementsByTagName('td')[3].getAttribute('data-date');
+                const dateB = b.getElementsByTagName('td')[3].getAttribute('data-date');
+                const dA = new Date(dateA);
+                const dB = new Date(dateB);
+                if (asc) {
+                    return dA - dB;
+                } else {
+                    return dB - dA;
+                }
+            });
+            rows.forEach(row => tbody.appendChild(row));
+        }
+        // 初期表示は最新順（降順）
+        sortTableByDistDate(false);
+        sortButton.addEventListener('click', function() {
+            sortAsc = !sortAsc;
+            sortTableByDistDate(sortAsc);
+            sortButton.textContent = sortAsc ? '▲' : '▼';
+        });
+    });
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
+</html>
