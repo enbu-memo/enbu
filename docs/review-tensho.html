@@ -20,11 +20,13 @@
 <body>
     <div id="header-include"></div>
     <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
         fetch('header.html')
             .then(res => res.text())
             .then(data => {
                 const headerDiv = document.getElementById('header-include');
                 headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
                 const scripts = headerDiv.querySelectorAll('script');
                 scripts.forEach(script => {
                     const newScript = document.createElement('script');
@@ -36,20 +38,55 @@
                     document.body.appendChild(newScript);
                 });
             });
+            fetch('copyright.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('copyright-include');
+                    if (el) el.innerHTML = data;
+                });
     </script>
     <div class="container">
-        <div class="last-update">最終更新日: 2025年11月29日</div>
+        <div class="last-update">最終更新日: 2026年1月30日</div>
         <main>
             <section>
                 <h2>天将カード評価</h2>
+                <h4>総評</h4>
+                <div class="sohyo">
+                ・攻/計/応温故など代替不可の補助多数</br>   
+                ・攻/計/応温故は24で取得済の場合後回し可</br>
+                ・必要数までは新カードに浮気せず交換推奨</br>
+                ・24カードは上位互換登場の可能性あり
+                </div>
+                <hr class="section-divider">
+                <h4>評価基準</h4>
+                <table class="border">
+                    <thead>
+                        <tr><th class="col1">項目</th><th class="col2">基準</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                        <tr><td class="col1">補助の希少性</td><td class="col2">代替の効かない補助持ち</td></tr>
+                    </tbody>
+                </table>
+                <table class="details">
+                    <thead>
+                        <tr><th class="col1">評価</th><th class="col2">補足</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                        <tr><td class="col1 rank-ss">SS</td><td class="col2">人権クラス</td></tr>
+                        <tr><td class="col1 rank-s">S</td><td class="col2">交換推奨</td></tr>
+                        <tr><td class="col1 rank-a">A</td><td class="col2">余裕があれば交換</td></tr>
+                        <tr><td class="col1 rank-b">B</td><td class="col2">代替候補あり</td></tr>
+                        <tr><td class="col1 rank-c">C</td><td class="col2">新カードまで様子見</td></tr>
+                        <tr><td class="col1 rank-d">D</td><td class="col2">不要</td></tr>
+                    </tbody>
+                </table>
+                <hr class="section-divider">                
                 <div id="output"></div>
                 <div id="sheet-output"></div>
                 <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
             </section>
         </main>
-        <footer>
-        <p>&copy; 2025 炎舞の備忘録</p>
-        </footer>
+    <div id="copyright-include"></div>
     </div>
 </body>
 <script>
@@ -82,15 +119,46 @@
             }
             let html = '<table class="excel-table">';
             html += '<thead><tr>';
-            headers.forEach(header => {
+            headers.forEach((header, idx) => {
+                if(idx === 1) return;
                 html += `<th>${header}</th>`;
             });
             html += '</tr></thead>';
             html += '<tbody>';
             tableData.forEach(row => {
                 html += '<tr>';
-                row.forEach(cell => {
-                    html += `<td>${cell !== undefined ? cell : ''}</td>`;
+                row.forEach((cell, idx) => {
+                    if(idx === 0) return; // 1列目は非表示
+                    if(idx === 1 && cell) {
+                        const filename = `${cell}.png`;
+                        html += `<td data-imgname="${cell}"><img src="img/busho_icon/${filename}" alt="${filename}"></td>`;
+                    } else if(idx === 5) {
+                        html += `<td>${cell ?? ''}</td>`;
+                    } else {
+                        let rank = cell.split('(')[0];
+                    switch(rank) {
+                            case 'SS':
+                                html += `<td class="rank-ss">${cell}</td>`;
+                                break;
+                            case 'S':
+                                html += `<td class="rank-s">${cell}</td>`;
+                                break;
+                            case 'A':
+                                html += `<td class="rank-a">${cell}</td>`;
+                                break;
+                            case 'B':
+                                html += `<td class="rank-b">${cell}</td>`;
+                                break;
+                            case 'C':
+                                html += `<td class="rank-c">${cell}</td>`;
+                                break;
+                            case 'D':
+                                html += `<td class="rank-d">${cell}</td>`;
+                                break;
+                            default:
+                                html += `<td>${cell ?? ''}</td>`;
+                    }
+                    }
                 });
                 html += '</tr>';
             });

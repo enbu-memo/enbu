@@ -37,6 +37,12 @@
                     document.body.appendChild(newScript);
                 });
             });
+            fetch('copyright.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('copyright-include');
+                    if (el) el.innerHTML = data;
+                });
     </script>
     <div class="container">
         <div class="last-update">最終更新日: 2025年12月6日</div>
@@ -86,9 +92,7 @@
         </section>
     </div>
 </body>
-    <footer>
-        <p>&copy; 2025 炎舞の備忘録</p>
-    </footer>
+    <div id="copyright-include"></div>
     <button id="backToTop" title="一番上に戻る">↑</button>
     <script>
     // 一番上に戻るボタンの表示・動作

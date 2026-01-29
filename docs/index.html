@@ -39,9 +39,15 @@
                     document.body.appendChild(newScript);
                 });
             });
+            fetch('copyright.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('copyright-include');
+                    if (el) el.innerHTML = data;
+                });
     </script>
     <div class="container">
-        <div class="last-update">最終更新日: 2026年1月6日</div>
+        <div class="last-update">最終更新日: 2026年1月30日</div>
         <main>
             <!-- <section>
                 <h2>イベントカレンダー</h2>
@@ -169,7 +175,27 @@
                                 <td><a href="review-raid.html" style="text-decoration:underline;color:#1976d2;">大将-レイド</a></td>
                                 <td data-date="2026-1-6">2026/1/6</td>
                                 <td>更新</td>
-                             </tr>                                                                                                       
+                             </tr>  
+                            <tr>
+                                <td><a href="review-kassen.html" style="text-decoration:underline;color:#1976d2;">大将-合戦</a></td>
+                                <td data-date="2026-1-30">2026/1/30</td>
+                                <td>更新</td>
+                            </tr>
+                             <tr>
+                                <td><a href="review-raid.html" style="text-decoration:underline;color:#1976d2;">大将-レイド</a></td>
+                                <td data-date="2026-1-30">2026/1/30</td>
+                                <td>更新</td>
+                             </tr>
+                            <tr>
+                                <td><a href="review-tensho.html" style="text-decoration:underline;color:#1976d2;">武将-天将</a></td>
+                                <td data-date="2026-1-30">2026/1/30</td>
+                                <td>更新</td>
+                             </tr>
+                            <tr>
+                                <td><a href="review-haou.html" style="text-decoration:underline;color:#1976d2;">武将-覇王</a></td>
+                                <td data-date="2026-1-30">2026/1/30</td>
+                                <td>更新</td>
+                             </tr>                                                                                                        
                             <!-- ここに行を追加しても5件を超えたらスクロールされます -->
                         </tbody>
                     </table>

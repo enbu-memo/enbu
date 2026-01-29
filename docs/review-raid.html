@@ -37,9 +37,15 @@
                     document.body.appendChild(newScript);
                 });
             });
+            fetch('copyright.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('copyright-include');
+                    if (el) el.innerHTML = data;
+                });
     </script>
     <div class="container">
-        <div class="last-update">最終更新日: 2026年1月6日</div>
+        <div class="last-update">最終更新日: 2026年1月30日</div>
         <main>
             <section>
                 <h2>大将評価【レイド】</h2>
@@ -83,8 +89,8 @@
                     <tbody>
                         <tr><td class="col1 rank-ss">SS</td><td class="col2"><img src="img/taisho/TB008.png" alt="TB008"> <img src="img/taisho/TC010.png" alt="TC010"></td></tr>
                         <tr><td class="col1 rank-s">S</td><td class="col2"><img src="img/taisho/TA013.png" alt="TA013"> <img src="img/taisho/TA011.png" alt="TA011"></td></tr>
-                        <tr><td class="col1 rank-a">A</td><td class="col2"><img src="img/taisho/TA007.png" alt="TA007"> <img src="img/taisho/TA006.png" alt="TA006"> <img src="img/taisho/TC008.png" alt="TC008"></td></tr>
-                        <tr><td class="col1 rank-b">B</td><td class="col2"><img src="img/taisho/TA003.png" alt="TA003"> <img src="img/taisho/TA009.png" alt="TA009"> <img src="img/taisho/TC002.png" alt="TC002"></td></tr>
+                        <tr><td class="col1 rank-a">A</td><td class="col2"><img src="img/taisho/TA007.png" alt="TA007"> <img src="img/taisho/TC008.png" alt="TC008">  <img src="img/taisho/TB013.png" alt="TB013"></td></tr>
+                        <tr><td class="col1 rank-b">B</td><td class="col2"><img src="img/taisho/TA003.png" alt="TA003"> <img src="img/taisho/TA009.png" alt="TA009"> <img src="img/taisho/TC002.png" alt="TC002"> <img src="img/taisho/TA006.png" alt="TA006"></td></tr>
                         <tr><td class="col1 rank-c">C</td><td class="col2"><img src="img/taisho/TA005.png" alt="TA005"> <img src="img/taisho/TB002.png" alt="TB002"> <img src="img/taisho/TC003.png" alt="TC003"></td></tr>
                     </tbody>
                 </table>
@@ -121,9 +127,7 @@
                 <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
         </section>
     </div>
-    <footer>
-        <p>&copy; 2025 炎舞の備忘録</p>
-    </footer>
+    <div id="copyright-include"></div>
 </body>
     <button id="backToTop" title="一番上に戻る">↑</button>
     <script>

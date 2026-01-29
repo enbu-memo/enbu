@@ -20,11 +20,13 @@
 <body>
     <div id="header-include"></div>
     <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
         fetch('header.html')
             .then(res => res.text())
             .then(data => {
                 const headerDiv = document.getElementById('header-include');
                 headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
                 const scripts = headerDiv.querySelectorAll('script');
                 scripts.forEach(script => {
                     const newScript = document.createElement('script');
@@ -36,6 +38,12 @@
                     document.body.appendChild(newScript);
                 });
             });
+            fetch('copyright.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('copyright-include');
+                    if (el) el.innerHTML = data;
+                });
     </script>
     <div class="container">
         <div class="last-update">最終更新日: 2025年11月29日</div>
@@ -47,9 +55,7 @@
                 <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
             </section>
         </main>
-        <footer>
-        <p>&copy; 2025 炎舞の備忘録</p>
-        </footer>
+    <div id="copyright-include"></div>
     </div>
 </body>
 </html>

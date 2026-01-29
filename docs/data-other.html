@@ -37,6 +37,12 @@
                     document.body.appendChild(newScript);
                 });
             });
+            fetch('copyright.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('copyright-include');
+                    if (el) el.innerHTML = data;
+                });
     </script>
     <div class="container">
         <div class="last-update">最終更新日: 2025年11月17日</div>
@@ -56,9 +62,7 @@
         </section>
     </main>
     </div>
-    <footer>
-        <p>&copy; 2025 炎舞の備忘録</p>
-    </footer>    
+    <div id="copyright-include"></div>    
 </body>
     <button id="backToTop" title="一番上に戻る">↑</button>
     <!-- FullCalendar CDN -->

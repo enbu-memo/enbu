@@ -73,6 +73,10 @@
     color: #00b050;
     font-weight: bold;
 }
+.rank-d {
+    color: #00bfff;
+    font-weight: bold;
+}
 /* 一覧・詳細テーブル画像サイズ（PCのみ） */
 @media (min-width: 601px) {
     #excel-table img,
