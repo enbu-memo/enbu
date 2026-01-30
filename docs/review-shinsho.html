@@ -13,7 +13,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>武将智将評価【神将】</title>
+    <title>武将評価【神将】</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
@@ -46,10 +46,40 @@
                 });
     </script>
     <div class="container">
-        <div class="last-update">最終更新日: 2025年11月29日</div>
+        <div class="last-update">最終更新日: 2026年1月31日</div>
         <main>
             <section>
-                <h2>神将カード評価</h2>
+                <h2>武将評価【神将】</h2>
+                <h4>総評</h4>
+                <div class="sohyo"> 
+                ・必要数までは新カードに浮気せず交換推奨</br>
+                ・後衛専門でも石川の千辛は取得推奨</br>
+                ・島津は攻撃以外も天佑(4枚)までは必要
+                </div>
+                <hr class="section-divider">
+                <h4>評価基準</h4>
+                <table class="border">
+                    <thead>
+                        <tr><th class="col1">項目</th><th class="col2">基準</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                        <tr><td class="col1">補助</td><td class="col2">代替の効かない補助持ち</td></tr>
+                    </tbody>
+                </table>
+                <table class="details">
+                    <thead>
+                        <tr><th class="col1">評価</th><th class="col2">補足</th></tr>
+                    </thead>
+                    <tbody class="table-common">
+                        <tr><td class="col1 rank-ss">SS</td><td class="col2">人権クラス</td></tr>
+                        <tr><td class="col1 rank-s">S</td><td class="col2">交換推奨</td></tr>
+                        <tr><td class="col1 rank-a">A</td><td class="col2">余裕があれば交換</td></tr>
+                        <tr><td class="col1 rank-b">B</td><td class="col2">代替候補あり</td></tr>
+                        <tr><td class="col1 rank-c">C</td><td class="col2">新カードまで様子見</td></tr>
+                        <tr><td class="col1 rank-d">D</td><td class="col2">不要</td></tr>
+                    </tbody>
+                </table>
+                <hr class="section-divider">                
                 <div id="output"></div>
                 <div id="sheet-output"></div>
                 <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
@@ -72,5 +102,80 @@
     backToTop.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    </script>
+    const excelPath = 'cardreview.xlsx';
+    let tableData = [];
+    let headers = [];
+    fetch(excelPath)
+        .then(res => res.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+            const sheetName = 'shinsholist';
+            const sheet = workbook.Sheets[sheetName];
+            if (!sheet) {
+                document.getElementById('output').innerHTML = '<p style="color:red">指定シートが見つかりません。</p>';
+                return;
+            }
+            const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+            headers = json[0];
+            tableData = json.slice(1);
+            renderTable();
+        })
+        .catch(err => {
+            document.getElementById('output').innerHTML = '<p style="color:red">Excelファイルの読み込みに失敗しました。</p>';
+        });
+        // ExcelデータをHTMLテーブルとして表示する関数
+        function renderTable() {
+            if (!headers.length || !tableData.length) {
+                document.getElementById('output').innerHTML = '<p>データがありません。</p>';
+                return;
+            }
+            let html = '<table class="excel-table">';
+            html += '<thead><tr>';
+            headers.forEach((header, idx) => {
+                if(idx === 1) return;
+                html += `<th>${header}</th>`;
+            });
+            html += '</tr></thead>';
+            html += '<tbody>';
+            tableData.forEach(row => {
+                html += '<tr>';
+                row.forEach((cell, idx) => {
+                    if(idx === 0) return; // 1列目は非表示
+                    if(idx === 1 && cell) {
+                        const filename = `${cell}.png`;
+                        html += `<td data-imgname="${cell}"><img src="img/busho_icon/${filename}" alt="${filename}"></td>`;
+                    } else if(idx === 5) {
+                        html += `<td>${cell ?? ''}</td>`;
+                    } else {
+                        let rank = cell.split('(')[0];
+                    switch(rank) {
+                            case 'SS':
+                                html += `<td class="rank-ss">${cell}</td>`;
+                                break;
+                            case 'S':
+                                html += `<td class="rank-s">${cell}</td>`;
+                                break;
+                            case 'A':
+                                html += `<td class="rank-a">${cell}</td>`;
+                                break;
+                            case 'B':
+                                html += `<td class="rank-b">${cell}</td>`;
+                                break;
+                            case 'C':
+                                html += `<td class="rank-c">${cell}</td>`;
+                                break;
+                            case 'D':
+                                html += `<td class="rank-d">${cell}</td>`;
+                                break;
+                            default:
+                                html += `<td>${cell ?? ''}</td>`;
+                    }
+                    }
+                });
+                html += '</tr>';
+            });
+            html += '</tbody></table>';
+            document.getElementById('output').innerHTML = html;
+        }
+</script>            
 </html>
