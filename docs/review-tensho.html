@@ -85,10 +85,23 @@
                 <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
             </section>
         </main>
-    <div id="copyright-include"></div>
-    </div>
+</div>
 </body>
-<script>
+    <div id="copyright-include"></div>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     const excelPath = 'cardreview.xlsx';
     let tableData = [];
     let headers = [];

@@ -127,11 +127,23 @@ font-size: 0.3em !important;
                     </tbody>
                 </table>
         </section>
-    </div>
-    <div id="copyright-include"></div>
+</div>
 </body>
+    <div id="copyright-include"></div>
     <button id="backToTop" title="一番上に戻る">↑</button>
     <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     // コピーボタンのフィードバックとコピー処理
     document.addEventListener('DOMContentLoaded', function() {
         // 最新data-dateのtrのcol2にNEWバッジ
@@ -231,18 +243,6 @@ font-size: 0.3em !important;
             sortTableByDistDate(sortAsc);
             sortButton.textContent = sortAsc ? '▲' : '▼';
         });
-    });
-    // 一番上に戻るボタンの表示・動作
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 200) {
-            backToTop.style.display = 'block';
-        } else {
-            backToTop.style.display = 'none';
-        }
-    });
-    backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     </script>
 </html>
