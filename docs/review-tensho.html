@@ -1,50 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0QLBFCRRHD');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0QLBFCRRHD');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="common.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>武将評価【天将】</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
     <div id="header-include"></div>
-    <script>
-        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
-        fetch('header.html')
-            .then(res => res.text())
-            .then(data => {
-                const headerDiv = document.getElementById('header-include');
-                headerDiv.innerHTML = data;
-                // ヘッダー内のスクリプトを再実行
-                const scripts = headerDiv.querySelectorAll('script');
-                scripts.forEach(script => {
-                    const newScript = document.createElement('script');
-                    if (script.src) {
-                        newScript.src = script.src;
-                    } else {
-                        newScript.textContent = script.textContent;
-                    }
-                    document.body.appendChild(newScript);
-                });
-            });
-            fetch('copyright.html')
-                .then(res => res.text())
-                .then(data => {
-                    const el = document.getElementById('copyright-include');
-                    if (el) el.innerHTML = data;
-                });
-    </script>
     <div class="container">
         <div class="last-update">最終更新日: 2026年1月30日</div>
         <main>
@@ -53,8 +26,8 @@
                 <h4>総評</h4>
                 <div class="sohyo"> 
                 ・必要数までは新カードに浮気せず交換推奨</br>
-                ・後衛専門でも石川の千辛は取得推奨</br>
-                ・島津は攻撃以外も天佑(4枚)までは必要
+                ・攻/計/応 温故は既に持っていれば後回しで良い</br>
+                ・24カードは上位互換登場の可能性あり
                 </div>
                 <hr class="section-divider">
                 <h4>評価基準</h4>
@@ -85,97 +58,94 @@
                 <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
             </section>
         </main>
-</div>
-</body>
+    </div>
     <div id="copyright-include"></div>
     <button id="backToTop" title="一番上に戻る">↑</button>
-    <script>
-    // 一番上に戻るボタンの表示・動作
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 200) {
-            backToTop.style.display = 'block';
-        } else {
-            backToTop.style.display = 'none';
-        }
-    });
-    backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    const excelPath = 'cardreview.xlsx';
-    let tableData = [];
-    let headers = [];
-    fetch(excelPath)
-        .then(res => res.arrayBuffer())
-        .then(data => {
-            const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
-            const sheetName = 'tensholist';
-            const sheet = workbook.Sheets[sheetName];
-            if (!sheet) {
-                document.getElementById('output').innerHTML = '<p style="color:red">指定シートが見つかりません。</p>';
-                return;
-            }
-            const json = XLSX.utils.sheet_to_json(sheet, {header:1});
-            headers = json[0];
-            tableData = json.slice(1);
-            renderTable();
-        })
-        .catch(err => {
-            document.getElementById('output').innerHTML = '<p style="color:red">Excelファイルの読み込みに失敗しました。</p>';
-        });
-        // ExcelデータをHTMLテーブルとして表示する関数
-        function renderTable() {
-            if (!headers.length || !tableData.length) {
-                document.getElementById('output').innerHTML = '<p>データがありません。</p>';
-                return;
-            }
-            let html = '<table class="excel-table">';
-            html += '<thead><tr>';
-            headers.forEach((header, idx) => {
-                if(idx === 1) return;
-                html += `<th>${header}</th>`;
+
+<script>
+    Load_header();
+    Load_copyright();
+    Disp_table();
+    Disp_backToTop();
+
+    function Disp_table() {
+        const excelPath = 'cardreview.xlsx';
+        let tableData = [];
+        let headers = [];
+        fetch(excelPath)
+            .then(res => res.arrayBuffer())
+            .then(data => {
+                const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+                const sheetName = 'tensholist';
+                const sheet = workbook.Sheets[sheetName];
+                if (!sheet) {
+                    document.getElementById('output').innerHTML = '<p style="color:red">指定シートが見つかりません。</p>';
+                    return;
+                }
+                const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+                headers = json[0];
+                tableData = json.slice(1);
+                renderTable();
+            })
+            .catch(err => {
+                document.getElementById('output').innerHTML = '<p style="color:red">Excelファイルの読み込みに失敗しました。</p>';
             });
-            html += '</tr></thead>';
-            html += '<tbody>';
-            tableData.forEach(row => {
-                html += '<tr>';
-                row.forEach((cell, idx) => {
-                    if(idx === 0) return; // 1列目は非表示
-                    if(idx === 1 && cell) {
-                        const filename = `${cell}.png`;
-                        html += `<td data-imgname="${cell}"><img src="img/busho_icon/${filename}" alt="${filename}"></td>`;
-                    } else if(idx === 5) {
-                        html += `<td>${cell ?? ''}</td>`;
-                    } else {
-                        let rank = cell.split('(')[0];
-                    switch(rank) {
-                            case 'SS':
-                                html += `<td class="rank-ss">${cell}</td>`;
-                                break;
-                            case 'S':
-                                html += `<td class="rank-s">${cell}</td>`;
-                                break;
-                            case 'A':
-                                html += `<td class="rank-a">${cell}</td>`;
-                                break;
-                            case 'B':
-                                html += `<td class="rank-b">${cell}</td>`;
-                                break;
-                            case 'C':
-                                html += `<td class="rank-c">${cell}</td>`;
-                                break;
-                            case 'D':
-                                html += `<td class="rank-d">${cell}</td>`;
-                                break;
-                            default:
-                                html += `<td>${cell ?? ''}</td>`;
-                    }
-                    }
+            // ExcelデータをHTMLテーブルとして表示する関数
+            function renderTable() {
+                if (!headers.length || !tableData.length) {
+                    document.getElementById('output').innerHTML = '<p>データがありません。</p>';
+                    return;
+                }
+                let html = '<table class="excel-table">';
+                html += '<thead><tr>';
+                headers.forEach((header, idx) => {
+                    if(idx === 1) return;
+                    html += `<th>${header}</th>`;
                 });
-                html += '</tr>';
-            });
-            html += '</tbody></table>';
-            document.getElementById('output').innerHTML = html;
-        }
+                html += '</tr></thead>';
+                html += '<tbody>';
+                tableData.forEach(row => {
+                    html += '<tr>';
+                    row.forEach((cell, idx) => {
+                        if(idx === 0) return; // 1列目は非表示
+                        if(idx === 1 && cell) {
+                            const filename = `${cell}.png`;
+                            html += `<td data-imgname="${cell}"><img src="img/busho_icon/${filename}" alt="${filename}"></td>`;
+                        } else if(idx === 5) {
+                            html += `<td>${cell ?? ''}</td>`;
+                        } else {
+                            let rank = cell.split('(')[0];
+                        switch(rank) {
+                                case 'SS':
+                                    html += `<td class="rank-ss">${cell}</td>`;
+                                    break;
+                                case 'S':
+                                    html += `<td class="rank-s">${cell}</td>`;
+                                    break;
+                                case 'A':
+                                    html += `<td class="rank-a">${cell}</td>`;
+                                    break;
+                                case 'B':
+                                    html += `<td class="rank-b">${cell}</td>`;
+                                    break;
+                                case 'C':
+                                    html += `<td class="rank-c">${cell}</td>`;
+                                    break;
+                                case 'D':
+                                    html += `<td class="rank-d">${cell}</td>`;
+                                    break;
+                                default:
+                                    html += `<td>${cell ?? ''}</td>`;
+                        }
+                        }
+                    });
+                    html += '</tr>';
+                });
+                html += '</tbody></table>';
+                document.getElementById('output').innerHTML = html;
+            }
+    }
+
 </script>            
+</body>
 </html>

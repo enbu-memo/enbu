@@ -3,54 +3,6 @@
     color: #e60000 !important;
     font-weight: bold !important;
 }
-@media (min-width: 601px) {
-    .excel-table-img {
-        width: 64px !important;
-        height: 64px !important;
-        max-width: 64px !important;
-        max-height: 64px !important;
-    }
-}
-.expired-row {
-    background: #eee !important;
-    color: #888 !important;
-}
-.copy-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-.new-badge {
-    display: inline-block;
-    color: red;
-    font-size: 0.9em;
-    font-weight: bold;
-    border-radius: 8px;
-    padding: 0px 0px 0px 0px;
-    vertical-align: super;
-    letter-spacing: 0.05em;
-    z-index: 10;
-}
-.copy-btn {
-    background: #f5f7fa;
-    border: 1.5px solid #1976d2;
-    border-radius: 6px;
-    cursor: pointer;
-    padding: 4px 8px;
-    transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
-    box-shadow: 0 1px 3px rgba(25,118,210,0.07);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.copy-btn:active {
-    background: #e3f2fd;
-    border-color: #0d47a1;
-    box-shadow: 0 0 0 2px #90caf9;
-}
-.copy-btn svg {
-    pointer-events: none;
-}
 
 /* 評価ランク文字色 */
 .rank-ss {
@@ -77,72 +29,6 @@
     color: #00bfff;
     font-weight: bold;
 }
-/* 一覧・詳細テーブル画像サイズ（PCのみ） */
-@media (min-width: 601px) {
-    #excel-table img,
-    #excel-table2 img {
-        width: 64px !important;
-        height: 64px !important;
-        max-width: 64px !important;
-        max-height: 64px !important;
-    }
-}
-/* 詳細テーブル画像サイズ（PCのみ） */
-@media (min-width: 601px) {
-    #excel-table2 img {
-        width: 64px !important;
-        height: 64px !important;
-        max-width: 64px !important;
-        max-height: 64px !important;
-    }
-}
-/* skillroot.html 検索結果テーブル行 ホバー時強調 */
-.search-skill #excel-table .skill-row:hover {
-    background: #e3f2fd !important;
-    cursor: pointer;
-}
-/* skillroot.html 検索UI・チェックボックス レイアウト */
-.search-skill {
-    margin-bottom: 0.5em;
-}
-.search-row {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    margin-bottom: 0.5em;
-}
-.search-checkboxes {
-    flex-wrap: wrap;
-}
-.search-box {
-    margin-left: 0;
-}
-@media (max-width: 600px) {
-    .search-skill {
-        margin-bottom: 0.5em;
-    }
-    .search-row {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5em;
-        margin-bottom: 0.5em;
-    }
-    .search-checkboxes {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        margin-bottom: 0.5em;
-        gap: 1em;
-    }
-    .search-box {
-        margin-left: 0;
-    }
-}
-@media (max-width: 600px) {
-    .last-update {
-        font-size: 0.25em !important;
-    }
-}
 /* ページ右上の最終更新日表示 */
 .last-update {
     right: 24px;
@@ -151,87 +37,7 @@
     float: right;
     margin-top: -15px;
 }
-@media (max-width: 600px) {
-    .sohyo {
-        font-size: 0.8em;
-    }
-}
-/* PC用テーブル列幅（601px以上） - 評価・補足テーブル基準 */
-/* テーブル内画像サイズ（PC:64x64, スマホ:32x32） */
-@media (min-width: 601px) {
-    .table-scroll img {
-        width: 64px !important;
-        height: 64px !important;
-    }
-}
-@media (max-width: 600px) {
-    .table-scroll img,
-    table img {
-        width: 44px !important;
-        height: 44px !important;
-    }
-}
-@media (min-width: 601px) {
-    .details th.col1, .details td.col1,
-    .border th.col1, .border td.col1,
-    table[name="A"] th.col1, table[name="A"] td.col1,
-    table[name="B"] th.col1, table[name="B"] td.col1,
-    table[name="C"] th.col1, table[name="C"] td.col1 {
-        width: 100px !important;
-        min-width: 100px !important;
-    }
-    .details th.col2, .details td.col2,
-    .border th.col2, .border td.col2,
-    table[name="A"] th.col2, table[name="A"] td.col2,
-    table[name="B"] th.col2, table[name="B"] td.col2,
-    table[name="C"] th.col2, table[name="C"] td.col2 {
-        min-width: 500px !important;
-        width: 500px !important;
-    }
-}
-@media (min-width: 601px) {
-    .fc-daygrid-day-number {
-        font-size: 1.2em !important;
-    }
-    .fc-col-header-cell-cushion {
-        font-size: 1em !important;
-    }
-    .fc-toolbar-title {
-        font-size: 2em !important;
-    }
-}
-@media (max-width: 600px) {
-    /* スマホ用テーブル列幅 - 評価基準・ABCテーブル統一 */
-    .details th.col1, .details td.col1,
-    .border th.col1, .border td.col1,
-    table[name="A"] th.col1, table[name="A"] td.col1,
-    table[name="B"] th.col1, table[name="B"] td.col1,
-    table[name="C"] th.col1, table[name="C"] td.col1 {
-        width: 70px !important;
-        min-width: 70px !important;
-    }
-    .details th.col2, .details td.col2,
-    .border th.col2, .border td.col2,
-    table[name="A"] th.col2, table[name="A"] td.col2,
-    table[name="B"] th.col2, table[name="B"] td.col2,
-    table[name="C"] th.col2, table[name="C"] td.col2 {
-        min-width: 200px !important;
-        width: 200px !important;
-    }
-    .table-scroll {
-        overflow-x: auto;
-    }
-    .table-scroll table {
-        width: 100%;
-    }
-}
-@media (max-width: 600px) {
-    table th,
-    table td {
-        white-space: normal;
-        word-break: break-word;
-    }
-}
+
 /* 2列目のテーブルデータのみ左寄せ */
 .border td.col2,
 .details td.col2,
@@ -248,18 +54,6 @@ h2.section-title {
 h3.section-title {
     font-size: 2em;
     font-weight: bold;
-}
-/* FullCalendar 日付サイズ調整（スマホ用） */
-@media (max-width: 600px) {
-    .fc-daygrid-day-number {
-        font-size: 12px !important;
-    }
-    .fc-toolbar-title {
-        font-size: 16px !important;
-    }
-    .fc-col-header-cell-cushion {
-        font-size: 12px !important;
-    }
 }
 /* 一番上に戻るボタン */
 #backToTop {
@@ -518,9 +312,64 @@ footer {
     font-size: 0.9em;
     color: #666;
 }
+#output {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.point {
+    border: 4px double #ffd600;
+    background: #fffde7;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 18px 0;
+    font-size: 0.9em;
+    color: #222;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255,214,0,0.08);
+}
+
+/* 一覧・詳細テーブル画像サイズ（PCのみ） */
+@media (min-width: 601px) {
+    #excel-table img,
+    #excel-table2 img {
+        width: 64px !important;
+        height: 64px !important;
+        max-width: 64px !important;
+        max-height: 64px !important;
+    }
+    .table-scroll img {
+        width: 64px !important;
+        height: 64px !important;
+    }
+    .details th.col1, .details td.col1,
+    .border th.col1, .border td.col1,
+    table[name="A"] th.col1, table[name="A"] td.col1,
+    table[name="B"] th.col1, table[name="B"] td.col1,
+    table[name="C"] th.col1, table[name="C"] td.col1 {
+        width: 100px !important;
+        min-width: 100px !important;
+    }
+    .details th.col2, .details td.col2,
+    .border th.col2, .border td.col2,
+    table[name="A"] th.col2, table[name="A"] td.col2,
+    table[name="B"] th.col2, table[name="B"] td.col2,
+    table[name="C"] th.col2, table[name="C"] td.col2 {
+        min-width: 500px !important;
+        width: 500px !important;
+    }
+    .fc-daygrid-day-number {
+        font-size: 1.2em !important;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 1em !important;
+    }
+    .fc-toolbar-title {
+        font-size: 2em !important;
+    }    
+}
 
 /* レスポンシブデザイン */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .container {
         margin: 20px 10px;
         padding: 20px 15px;
@@ -573,19 +422,73 @@ footer {
         padding: 2px 2px;
         touch-action: manipulation;
     }
-}
-#output {
-    max-height: 400px;
-    overflow-y: auto;
-}
-.point {
-    border: 4px double #ffd600;
-    background: #fffde7;
-    border-radius: 8px;
-    padding: 12px 18px;
-    margin: 18px 0;
-    font-size: 0.9em;
-    color: #222;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(255,214,0,0.08);
+
+    /* FullCalendar 日付サイズ調整（スマホ用） */
+    .fc-daygrid-day-number {
+        font-size: 12px !important;
+    }
+    .fc-toolbar-title {
+        font-size: 16px !important;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 12px !important;
+    }
+    /* スマホ用テーブル列幅 - 評価基準・ABCテーブル統一 */
+    .details th.col1, .details td.col1,
+    .border th.col1, .border td.col1,
+    table[name="A"] th.col1, table[name="A"] td.col1,
+    table[name="B"] th.col1, table[name="B"] td.col1,
+    table[name="C"] th.col1, table[name="C"] td.col1 {
+        width: 70px !important;
+        min-width: 70px !important;
+    }
+    .details th.col2, .details td.col2,
+    .border th.col2, .border td.col2,
+    table[name="A"] th.col2, table[name="A"] td.col2,
+    table[name="B"] th.col2, table[name="B"] td.col2,
+    table[name="C"] th.col2, table[name="C"] td.col2 {
+        min-width: 200px !important;
+        width: 200px !important;
+    }
+    .table-scroll {
+        overflow-x: auto;
+    }
+    .table-scroll table {
+        width: 100%;
+    }    
+    table th,
+    table td {
+        white-space: normal;
+        word-break: break-word;
+    }
+    .table-scroll img,
+    table img {
+        width: 44px !important;
+        height: 44px !important;
+    }
+    .sohyo {
+        font-size: 0.8em;
+    }
+    .search-skill {
+        margin-bottom: 0.5em;
+    }
+    .search-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5em;
+        margin-bottom: 0.5em;
+    }
+    .search-checkboxes {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        margin-bottom: 0.5em;
+        gap: 1em;
+    }
+    .search-box {
+        margin-left: 0;
+    }
+    .last-update {
+        font-size: 0.25em !important;
+    }
 }

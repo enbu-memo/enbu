@@ -1,51 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0QLBFCRRHD');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0QLBFCRRHD');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="common.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <meta charset="UTF-8">
-    <meta name=”description” content=”公開データや攻略情報をまとめた戦国炎舞の攻略サイト。 あくまで参考程度にお役に立てれば幸いです。当サイト上の画像等は全て戦国炎舞運営様に帰属します。” />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>戦国炎舞の備忘録</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="戦国炎舞の攻略サイト。あくまで参考程度にお役に立てれば幸いです。当サイト上の画像等は全て戦国炎舞運営様に帰属します。" />
+    <title>戦国炎舞の備忘録</title>
 </head>
 <body>
     <div id="header-include"></div>
-    <script>
-        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
-        fetch('header.html')
-            .then(res => res.text())
-            .then(data => {
-                const headerDiv = document.getElementById('header-include');
-                headerDiv.innerHTML = data;
-                // ヘッダー内のスクリプトを再実行
-                const scripts = headerDiv.querySelectorAll('script');
-                scripts.forEach(script => {
-                    const newScript = document.createElement('script');
-                    if (script.src) {
-                        newScript.src = script.src;
-                    } else {
-                        newScript.textContent = script.textContent;
-                    }
-                    document.body.appendChild(newScript);
-                });
-            });
-            fetch('copyright.html')
-                .then(res => res.text())
-                .then(data => {
-                    const el = document.getElementById('copyright-include');
-                    if (el) el.innerHTML = data;
-                });
-    </script>
     <div class="container">
         <div class="last-update">最終更新日: 2026年1月30日</div>
         <main>
@@ -207,113 +180,56 @@
             </section>
         </main>
     </div>
-    <script>
-        // 記事名のみフィルター
-        const filterInput = document.getElementById('filterInput');
-        const table = document.getElementById('historyTable');
-        filterInput.addEventListener('keyup', function() {
-            const filter = filterInput.value.toLowerCase();
-            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-            for (let i = 0; i < rows.length; i++) {
-                const titleCell = rows[i].getElementsByTagName('td')[0];
-                const titleText = titleCell.textContent.toLowerCase();
-                rows[i].style.display = titleText.includes(filter) ? '' : 'none';
+    </div>
+    <div id="copyright-include"></div>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+
+<script>
+    Load_header();
+    Load_copyright();
+    Disp_backToTop();
+    
+    // 記事名のみフィルター
+    const filterInput = document.getElementById('filterInput');
+    const table = document.getElementById('historyTable');
+    filterInput.addEventListener('keyup', function() {
+        const filter = filterInput.value.toLowerCase();
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        for (let i = 0; i < rows.length; i++) {
+            const titleCell = rows[i].getElementsByTagName('td')[0];
+            const titleText = titleCell.textContent.toLowerCase();
+            rows[i].style.display = titleText.includes(filter) ? '' : 'none';
+        }
+    });
+
+    // 昇順・降順ソートのみ
+    let sortAsc = false;
+    const sortButton = document.getElementById('sortToggle');
+    const tbody = table.getElementsByTagName('tbody')[0];
+    function sortTableByDate(asc = true) {
+        const rows = Array.from(tbody.getElementsByTagName('tr'));
+        rows.sort((a, b) => {
+            const dateA = a.getElementsByTagName('td')[1].getAttribute('data-date');
+            const dateB = b.getElementsByTagName('td')[1].getAttribute('data-date');
+            // 日付をDateオブジェクトに変換
+            const dA = new Date(dateA.replace(/-/g, '/'));
+            const dB = new Date(dateB.replace(/-/g, '/'));
+            if (asc) {
+                return dA - dB;
+            } else {
+                return dB - dA;
             }
         });
-
-        // 昇順・降順ソートのみ
-    let sortAsc = false;
-        const sortButton = document.getElementById('sortToggle');
-        const tbody = table.getElementsByTagName('tbody')[0];
-
-        function sortTableByDate(asc = true) {
-            const rows = Array.from(tbody.getElementsByTagName('tr'));
-            rows.sort((a, b) => {
-                const dateA = a.getElementsByTagName('td')[1].getAttribute('data-date');
-                const dateB = b.getElementsByTagName('td')[1].getAttribute('data-date');
-                // 日付をDateオブジェクトに変換
-                const dA = new Date(dateA.replace(/-/g, '/'));
-                const dB = new Date(dateB.replace(/-/g, '/'));
-                if (asc) {
-                    return dA - dB;
-                } else {
-                    return dB - dA;
-                }
-            });
-            rows.forEach(row => tbody.appendChild(row));
-        }
+        rows.forEach(row => tbody.appendChild(row));
+    }
 
     // 初期表示は最新順（降順）
     sortTableByDate(false);
-
-        sortButton.addEventListener('click', function() {
-            sortAsc = !sortAsc;
-            sortTableByDate(sortAsc);
-            sortButton.textContent = sortAsc ? '▲' : '▼';
-        });
-    </script>
-    </div>
-</body>
-    <div id="copyright-include"></div>
-    <button id="backToTop" title="一番上に戻る">↑</button>
-    <!-- FullCalendar CDN（CSS・JS両方） -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <script>
-    // 一番上に戻るボタンの表示・動作
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 200) {
-            backToTop.style.display = 'block';
-        } else {
-            backToTop.style.display = 'none';
-        }
+    sortButton.addEventListener('click', function() {
+        sortAsc = !sortAsc;
+        sortTableByDate(sortAsc);
+        sortButton.textContent = sortAsc ? '▲' : '▼';
     });
-    backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // FullCalendar初期化（イベントはevents.jsonから取得）
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        if (calendarEl) {
-            fetch('events.json')
-                .then(response => response.json())
-                .then(events => {
-                    let allEvents = events;
-                    let calendar = new FullCalendar.Calendar(calendarEl, {
-                        initialView: 'dayGridMonth',
-                        locale: 'ja',
-                        height: 'auto',
-                        showNonCurrentDates: true,
-                        events: function(fetchInfo, successCallback, failureCallback) {
-                            // 表示中の月の開始・終了日
-                            const startMonth = fetchInfo.start;
-                            const endMonth = fetchInfo.end;
-                            // 月内に収めたイベントリスト
-                            let filtered = allEvents.map(ev => {
-                                let evStart = new Date(ev.start);
-                                let evEnd = new Date(ev.end);
-                                // 月内に収める
-                                let newStart = evStart < startMonth ? startMonth : evStart;
-                                let newEnd = evEnd > endMonth ? endMonth : evEnd;
-                                // 月内に1日でもかかっていれば表示
-                                if (newEnd > newStart) {
-                                    return {
-                                        ...ev,
-                                        start: newStart.toISOString().slice(0,10),
-                                        end: newEnd.toISOString().slice(0,10)
-                                    };
-                                } else {
-                                    return null;
-                                }
-                            }).filter(e => e);
-                            successCallback(filtered);
-                        }
-                    });
-                    calendar.render();
-                });
-        }
-    });
-    </script>
+</script>            
+</body>  
 </html>

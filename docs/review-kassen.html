@@ -1,49 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0QLBFCRRHD');
-</script>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0QLBFCRRHD');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="common.js"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>大将評価【合戦】</title>
-    <link rel="stylesheet" href="style.css">
+    <title>大将評価【合戦】</title>
 </head>
 <body>
     <div id="header-include"></div>
-    <script>
-        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
-        fetch('header.html')
-            .then(res => res.text())
-            .then(data => {
-                const headerDiv = document.getElementById('header-include');
-                headerDiv.innerHTML = data;
-                // ヘッダー内のスクリプトを再実行
-                const scripts = headerDiv.querySelectorAll('script');
-                scripts.forEach(script => {
-                    const newScript = document.createElement('script');
-                    if (script.src) {
-                        newScript.src = script.src;
-                    } else {
-                        newScript.textContent = script.textContent;
-                    }
-                    document.body.appendChild(newScript);
-                });
-            });
-            fetch('copyright.html')
-                .then(res => res.text())
-                .then(data => {
-                    const el = document.getElementById('copyright-include');
-                    if (el) el.innerHTML = data;
-                });
-    </script>
     <div class="container">
         <div class="last-update">最終更新日: 2026年1月30日</div>
         <main>
@@ -123,21 +97,13 @@
             <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
         </section>
     </div>
-</body>
     <div id="copyright-include"></div>
     <button id="backToTop" title="一番上に戻る">↑</button>
-    <script>
-    // 一番上に戻るボタンの表示・動作
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 200) {
-            backToTop.style.display = 'block';
-        } else {
-            backToTop.style.display = 'none';
-        }
-    });
-    backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    </script>
+
+<script>
+    Load_header();
+    Load_copyright();
+    Disp_backToTop();
+</script>            
+</body> 
 </html>
