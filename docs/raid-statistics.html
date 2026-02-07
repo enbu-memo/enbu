@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<style>
+    /* skillroot.html 検索結果テーブル行 ホバー時強調 */
+.search-skill #excel-table .skill-row:hover {
+    background: #e3f2fd !important;
+    cursor: pointer;
+}
+/* skillroot.html 検索UI・チェックボックス レイアウト */
+.search-skill {
+    margin-bottom: 0.5em;
+}
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 0.5em;
+}
+.search-box {
+    margin-left: 0;
+}
+.excel-table td, .excel-table th {
+    color: #222;
+}
+</style>
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QLBFCRRHD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0QLBFCRRHD');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スキル玉合成ルート</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div id="header-include"></div>
+    <script>
+        // header.htmlを読み込んで挿入し、ヘッダー内のスクリプトも再実行
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                const headerDiv = document.getElementById('header-include');
+                headerDiv.innerHTML = data;
+                // ヘッダー内のスクリプトを再実行
+                const scripts = headerDiv.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            });
+            fetch('copyright.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('copyright-include');
+                    if (el) el.innerHTML = data;
+                });
+    </script>
+    <div class="container">
+        <div class="last-update">最終更新日: 2026年2月7日</div>
+        <main>
+            <section>
+                <h2>討伐デッキ統計</h2>
+                <div class="search-skill">
+                <table class="priority-table" style="margin-bottom:0.5em;width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <colgroup>
+                    <col style="width:auto;">
+                  </colgroup>
+                  <thead>
+                    <tr style="background:#eee;font-weight:bold;">
+                      <th>集計方法</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="text-align:left;">個人ランキングTOP100から集計</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:left;">サブ部隊は集計対象外</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:left;">採用率順で表示</td>
+                    </tr>                    
+                  </tbody>
+                </table>
+                <hr class="section-divider">    
+                <div id="output-raid"></div>
+                </div>
+                <div id="sheet-output-raid"></div>
+                <div class="copyright">©Sumzap, Inc. All Rights Reserved.</div>
+            </section>
+        </main>
+</div>
+</body>
+    <div id="copyright-include"></div>
+    <button id="backToTop" title="一番上に戻る">↑</button>
+    <script>
+    // 一番上に戻るボタンの表示・動作
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const excelPath = 'db/raid- statistics.xlsx';
+    let tableData = [];
+    let headers = [];
+    let sheetDateMap = {};
+    fetch(excelPath)
+        .then(res => res.arrayBuffer())
+        .then(data => {
+            const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+            const sheetName = 'history';
+            const sheet = workbook.Sheets[sheetName];
+            if (!sheet) {
+                document.getElementById('output-raid').innerHTML = '<p style="color:red">指定シートが見つかりません。</p>';
+                return;
+            }
+            const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+            // historyシートの1列目にシート名、2列目に集計日時が格納されていると仮定
+            const sheetNames = json.map(row => row[0]).filter(name => !!name);
+            sheetDateMap = {};
+            json.forEach(row => {
+                if(row[0]) sheetDateMap[row[0]] = row[1] ?? '';
+            });
+            // ドロップダウン生成
+            let selectHtml = '<label for="sheet-select"></label>';
+            selectHtml += '<select id="sheet-select" style="font-size:1.1em;">';
+            sheetNames.forEach(name => {
+                selectHtml += `<option value="${name}">${name}</option>`;
+            });
+            selectHtml += '</select>';
+            // 集計日時表示（初期は最初のシートの日時）
+            let selectedSheet = sheetNames[0] ?? '';
+            let selectedDate = sheetDateMap[selectedSheet] ?? '';
+            selectHtml += `<span id="sheet-date" style="margin-left:1em;font-size:1em;color:#222;">集計日時: ${selectedDate}</span>`;
+            document.getElementById('output-raid').innerHTML = selectHtml;
+            renderTable();
+        })
+        .catch(err => {
+            document.getElementById('output-raid').innerHTML = '<p style="color:red">Excelファイルの読み込みに失敗しました。</p>';
+        });
+
+    // ドロップダウン選択時にrenderTableを呼び出す
+    document.addEventListener('change', function(e) {
+        if(e.target.id === 'sheet-select') {
+            // 集計日時を更新
+            const select = e.target;
+            const selectedSheet = select.value;
+            const date = sheetDateMap[selectedSheet] ?? '';
+            const dateSpan = document.getElementById('sheet-date');
+            if (dateSpan) dateSpan.textContent = `集計日時: ${date}`;
+            renderTable();
+        }
+    });    
+
+    function renderTable() {
+        // ドロップダウンで選択されたシート名を取得
+        const select = document.getElementById('sheet-select');
+        if (!select) return;
+        const selectedSheet = select.value;
+        // Excelから該当シートを取得しテーブル化
+        fetch(excelPath)
+            .then(res => res.arrayBuffer())
+            .then(data => {
+                const workbook = XLSX.read(new Uint8Array(data), {type: 'array'});
+                const sheet = workbook.Sheets[selectedSheet];
+                if (!sheet) {
+                    document.getElementById('output-raid').innerHTML = `<p style="color:red">シート『${selectedSheet}』が見つかりません。</p>`;
+                    return;
+                }
+                const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+                // データを5個ずつ分割し、足りない場合は空白セルで補完
+                let html = '';
+                const colPairs = [ [0,1], [2,3], [4,5] ];
+                for(const pair of colPairs) {
+                    const [colA, colB] = pair;
+                    // データ配列作成
+                    const dataArr = [];
+                    const headerValue = Number(json[0]?.[colB]) || 1;
+                    for(let i=1; i<json.length; i++) {
+                        const row = json[i];
+                        const cell = row?.[colA] ?? '';
+                        if (!cell) continue;
+                        const filename = `${cell}.png`;
+                        const value = Number(row?.[colB]) || 0;
+                        const percent = headerValue ? Math.round((value / headerValue) * 100) : 0;
+                        dataArr.push(`<td data-imgname="${cell}"><img src="img/taisho/${filename}" alt="${filename}"><br><span style="font-weight:bold;">${percent}%</span></td>`);
+                    }
+                    // ヘッダー（採用人数表示）
+                    const headerName = json[0]?.[colA] ?? '';
+                    const headerCount = headerValue ? `(${headerValue}/100人)` : '';
+                    html += `<table class="excel-table" style="width:auto;margin-bottom:1em;">`;
+                    html += `<tr><th colspan="6" style="text-align:center;font-weight:bold;">${headerName} <span>${headerCount}</span></th></tr>`;
+                    // 6個ずつ分割してテーブル行に
+                    for(let j=0; j<dataArr.length; j+=6) {
+                        html += '<tr>';
+                        for(let k=0; k<6; k++) {
+                            html += dataArr[j+k] ?? '<td></td>';
+                        }
+                        html += '</tr>';
+                    }
+                    // データ数が6未満の場合、1行だけ空白補完
+                    if(dataArr.length === 0) {
+                        html += '<tr>';
+                        for(let k=0; k<6; k++) html += '<td></td>';
+                        html += '</tr>';
+                    }
+                    html += '</table>';
+                }
+                // ドロップダウンは維持
+                const selectBox = document.getElementById('output-raid').querySelector('label').outerHTML + document.getElementById('output-raid').querySelector('select').outerHTML;
+                document.getElementById('output-raid').innerHTML = selectBox + html;
+            })
+            .catch(err => {
+                document.getElementById('output-raid').innerHTML = `<p style=\"color:red\">シート『${selectedSheet}』の読み込みに失敗しました。</p>`;
+            });
+    }
+    </script>
+</html>
