@@ -1,12 +1,12 @@
 // Cloudflare Pages用サイトマップ自動生成スクリプト
-// npm install sitemap fs
+// npm install sitemap
 
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { createWriteStream, readdirSync } = require('fs');
 const path = require('path');
 
 const baseUrl = 'https://enbu-kouryaku.com/';
-const docsDir = path.join(__dirname);
+const docsDir = path.join(__dirname, 'docs');
 
 // 対象拡張子
 const exts = ['.html'];
