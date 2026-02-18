@@ -4,8 +4,7 @@
   "description": "Cloudflare Pages用サイトマップ自動生成スクリプト含む静的サイト",
   "main": "generate-sitemap.js",
   "scripts": {
-    "build": "echo ビルド処理（必要なら書き換えてください）",
-    "postbuild": "node generate-sitemap.js"
+    "build": "node generate-sitemap.js"
   },
   "dependencies": {
     "sitemap": "^7.1.1"
