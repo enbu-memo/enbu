@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Sitemap generator for enbu docs site",
   "main": "generate-sitemap.js",
-"scripts": {
-  "build": "echo ビルド処理はありません",
-  "postbuild": "node generate-sitemap.js"
-},
+  "scripts": {
+    "build": "echo ビルド処理はありません",
+    "postbuild": "node generate-sitemap.js"
+  },
   "dependencies": {
     "sitemap": "^7.1.1"
   }
