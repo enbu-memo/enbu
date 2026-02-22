@@ -5,7 +5,7 @@
   "main": "generate-sitemap.js",
 "scripts": {
   "build": "echo ビルド処理はありません",
-  "postbuild": "node docs/generate-sitemap.js"
+  "postbuild": "node generate-sitemap.js"
 },
   "dependencies": {
     "sitemap": "^7.1.1"
