@@ -1,3 +1,45 @@
+function InitHeaderNavActive() {
+    // 現在ページのリンクと親ドロップダウンにactiveクラスを付与
+    var current = location.pathname.split('/').pop();
+    var navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(function(link){
+        if(link.getAttribute('href') === current){
+            link.classList.add('active');
+            var parentDropdown = link.closest('.dropdown');
+            if(parentDropdown){
+                var btn = parentDropdown.querySelector('.dropbtn');
+                if(btn) btn.classList.add('active');
+            }
+        }
+    });
+    // スマホ用: トグルで左からメニュー表示、サブメニューはタップで展開
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const menu = document.querySelector('.nav-menu');
+    if (toggle && menu) {
+        toggle.addEventListener('click', function() {
+            menu.classList.toggle('active');
+        });
+    }
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(function(drop){
+        const btn = drop.querySelector('.dropbtn');
+        if (btn) {
+            btn.addEventListener('click', function(e){
+                if(window.innerWidth <= 768){
+                    e.preventDefault();
+                    if (drop.classList.contains('open')) {
+                        drop.classList.remove('open');
+                    } else {
+                        dropdowns.forEach(function(d){
+                            if (d !== drop) d.classList.remove('open');
+                        });
+                        drop.classList.add('open');
+                    }
+                }
+            });
+        }
+    });
+}
 // 共通関数: ヘッダー・著作権・一番上に戻るボタン
 
 function Disp_backToTop() {
@@ -22,17 +64,7 @@ function Load_header() {
     .then(data => {
         const headerDiv = document.getElementById('header-include');
         headerDiv.innerHTML = data;
-        // ヘッダー内のスクリプトを再実行
-        const scripts = headerDiv.querySelectorAll('script');
-        scripts.forEach(script => {
-            const newScript = document.createElement('script');
-            if (script.src) {
-                newScript.src = script.src;
-            } else {
-                newScript.textContent = script.textContent;
-            }
-            document.body.appendChild(newScript);
-        });
+        InitHeaderNavActive();
     });
 }
 
