@@ -2,11 +2,8 @@ import { execSync } from 'child_process';
 import { readdirSync, writeFileSync } from 'fs';
 import { createRequire } from 'module';
 
-// routes.ts を読み込む（TSなのでtsx→jsに変換して読む）
 const require = createRequire(import.meta.url);
-const { execSync: ex } = await import('child_process');
 
-// routes.ts をJSとして評価するためにesbuildで変換
 execSync('npx esbuild src/routes.ts --bundle=false --format=cjs --outfile=scripts/_routes.cjs', { stdio: 'inherit' });
 const { routes, SITE_TITLE } = require('./_routes.cjs');
 
@@ -14,12 +11,13 @@ const { routes, SITE_TITLE } = require('./_routes.cjs');
 const history = [];
 for (const { path, title, file } of routes) {
   try {
-    const log = execSync(`git log --follow --format=%cI|%s -- ${file}`).toString().trim();
+    const log = execSync(`git log --follow --format="%cI||%s" -- "${file}"`).toString().trim();
     if (!log) continue;
     for (const line of log.split('\n')) {
-      const idx = line.indexOf('|');
+      const idx = line.indexOf('||');
+      if (idx === -1) continue;
       const date = line.slice(0, idx).trim();
-      const content = line.slice(idx + 1).trim();
+      const content = line.slice(idx + 2).trim();
       history.push({ page: title, date, content, route: path });
     }
   } catch {}
@@ -32,15 +30,18 @@ const pageFiles = readdirSync('src/pages').map(f => `src/pages/${f}`);
 pageFiles.push('src/App.tsx');
 for (const p of pageFiles) {
   try {
-    const out = execSync(`git log -1 --format=%cI -- ${p}`).toString().trim();
+    const out = execSync(`git log -1 --format="%cI" -- "${p}"`).toString().trim();
     if (out) updated[p] = out;
   } catch {}
 }
 
-// --- .env.local に書き出す ---
+// --- .env.local に書き出す（空でもnullとして書く）---
+const historyJson = JSON.stringify(history.length > 0 ? history : []);
+const updatedJson = JSON.stringify(Object.keys(updated).length > 0 ? updated : {});
+
 writeFileSync(
   '.env.local',
-  `GIT_HISTORY=${JSON.stringify(JSON.stringify(history))}\nGIT_UPDATED_AT=${JSON.stringify(JSON.stringify(updated))}\n`
+  `GIT_HISTORY=${JSON.stringify(historyJson)}\nGIT_UPDATED_AT=${JSON.stringify(updatedJson)}\n`
 );
 
 // --- _worker.js を自動生成 ---
