@@ -35,13 +35,13 @@ for (const p of pageFiles) {
   } catch {}
 }
 
-// --- .env.local に書き出す（空でもnullとして書く）---
-const historyJson = JSON.stringify(history.length > 0 ? history : []);
-const updatedJson = JSON.stringify(Object.keys(updated).length > 0 ? updated : {});
+// --- .env.local に書き出す ---
+const historyJson = JSON.stringify(history);
+const updatedJson = JSON.stringify(updated);
 
 writeFileSync(
   '.env.local',
-  `GIT_HISTORY=${JSON.stringify(historyJson)}\nGIT_UPDATED_AT=${JSON.stringify(updatedJson)}\n`
+  `GIT_HISTORY=${historyJson}\nGIT_UPDATED_AT=${updatedJson}\n`
 );
 
 // --- _worker.js を自動生成 ---
