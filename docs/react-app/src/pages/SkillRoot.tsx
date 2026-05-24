@@ -41,7 +41,7 @@ const PriorityTable: React.FC = () => (
 const SkillSearch: React.FC<{
   headers: string[];
   tableData: any[];
-  onSelectSkill: (name: string) => void;
+  onSelectSkill: (imgName: string, skillName: string) => void;
 }> = ({ headers, tableData, onSelectSkill }) => {
   const [search, setSearch] = useState('');
   const [types, setTypes] = useState<string[]>([]);
@@ -97,12 +97,13 @@ const SkillSearch: React.FC<{
           </thead>
           <tbody>
             {filtered.map((row, idx) => (
-              <tr className="skill-row" key={idx} style={{ cursor: 'pointer' }} onClick={() => {
-                // 画像名（拡張子除く）
-                let imgName = '';
-                if (row[3]) imgName = row[3].toString();
-                if (imgName) onSelectSkill(imgName);
-              }}>
+              <tr className="skill-row" key={idx} style={{ cursor: 'pointer' }}   onClick={() => {
+                  let imgName = '';
+                  let skillName = '';
+                  if (row[3]) imgName = row[3].toString();
+                  if (row[1]) skillName = row[1].toString(); // ← 2列目がスキル名
+                  if (imgName) onSelectSkill(imgName, skillName);
+                }}>
                 {row.map((cell: any, i: number) => {
                   if (i === 2) return null; // 3列目は非表示
                   if (i === 3 && cell) {
@@ -123,8 +124,9 @@ const SkillSearch: React.FC<{
 // 詳細表示
 const SheetDetail: React.FC<{
   skillName: string;
+  displayName: string; // ← 追加
   onBack: () => void;
-}> = ({ skillName, onBack }) => {
+}> = ({ skillName, displayName, onBack }) => {
   const [json, setJson] = useState<any[][]>([]);
   useEffect(() => {
     fetch('/db/skillroot.xlsm')
@@ -154,7 +156,7 @@ const SheetDetail: React.FC<{
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1em', marginBottom: '0.5em' }}>
-        <h4 style={{ margin: 0 }}>【{secondRow ? secondRow[1] : skillName}】の合成ルート</h4>
+          <h4 style={{ margin: 0 }}>【{displayName}】の合成ルート</h4>
         <button onClick={onBack} style={{ padding: '0.3em 0.9em', fontSize: '0.95em', background: '#222', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>戻る</button>
       </div>
       <div className="second-row-info" style={{ padding: '0.5em 1em', background: '#f9f9f9', borderRadius: '6px', border: '1px solid #eee' }}>
