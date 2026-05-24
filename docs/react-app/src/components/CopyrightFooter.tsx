@@ -1,0 +1,9 @@
+import React from 'react';
+
+const CopyrightFooter: React.FC = () => (
+  <footer>
+    <p>&copy; 2026 戦国炎舞の備忘録</p>
+  </footer>
+);
+
+export default CopyrightFooter;

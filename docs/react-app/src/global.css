@@ -1,0 +1,482 @@
+/* 汎用 赤文字・太字用クラス */
+.text-red {
+    color: #e60000 !important;
+    font-weight: bold !important;
+}
+.text-blue {
+    color: #1976d2 !important;
+    font-weight: bold !important;
+}
+img.blue-border {
+    outline: 3px solid #1976d2;    /* 青色枠 */
+    outline-offset: -3px;      /* 内側に寄せる */
+}
+
+/* 評価ランク文字色 */
+.rank-ss {
+    color: #8000ff;
+    font-weight: bold;
+}
+.rank-s {
+    color: #ff1493;
+    font-weight: bold;
+}
+.rank-a {
+    color: #e60000;
+    font-weight: bold;
+}
+.rank-b {
+    color: #ff8000;
+    font-weight: bold;
+}
+.rank-c {
+    color: #00b050;
+    font-weight: bold;
+}
+.rank-d {
+    color: #00bfff;
+    font-weight: bold;
+}
+/* ページ右上の最終更新日表示 */
+.last-update {
+    right: 24px;
+    font-size: 0.85em;
+    color: #888;
+    float: right;
+    margin-top: -15px;
+}
+
+/* 2列目のテーブルデータのみ左寄せ */
+.border td.col2,
+.details td.col2,
+tbody td.col2,
+tbody td.col2,
+ tbody td.col2 {
+    text-align: left !important;
+}
+h2.section-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+/* イベントカレンダー見出しサイズ調整 */
+h3.section-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+/* 一番上に戻るボタン */
+#backToTop {
+    position: fixed;
+    right: 24px;
+    bottom: 32px;
+    z-index: 9999;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 2em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    display: none;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+#backToTop:hover {
+    background: #1565c0;
+    box-shadow: 0 4px 16px rgba(21,101,192,0.18);
+}
+/* 全見出し・目次・小項目の色をトップ文言に統一 */
+/* 目次の小項目（サブ項目）を控えめに */
+.toc .sub-toc a {
+    color: #222;
+    font-size: 0.97em !important;
+    font-weight: 400 !important;
+}
+/* 目次リストと題名の強調度調整 */
+.toc a {
+    color: #222 !important;
+    font-size: 1.12em !important;
+    font-weight: 700 !important;
+}
+.section-title {
+    font-size: 1.05em !important;
+    font-weight: 600 !important;
+    color: #222 !important;
+}
+.has-sub > .main-toc {
+    cursor: pointer;
+    position: relative;
+    font-size: 1.18em;
+    font-weight: 900;
+    color: #222;
+    letter-spacing: 0.02em;
+}
+.has-sub > .main-toc::after {
+    content: "";
+}
+.sub-toc a {
+        font-size: 0.97em;
+        font-weight: 400;
+        color: #666;
+    margin-left: 16px;
+    background: #fafafa;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 4px 0 4px 8px;
+}
+.section-divider {
+    border: none;
+    border-top: 2px solid #eee;
+    margin: 18px 0 10px 0;
+}
+.section-title {
+    margin-bottom: 18px;
+}
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 奥義ページ用 目次・著作権CSS */
+.copyright {
+    font-size: 10px;
+    color: #888;
+    text-align: right;
+    margin-top: 4px;
+    margin-right: 8px;
+}
+.toc {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 5px 0px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.toc h3 {
+    margin-top: 0;
+    color: #222;
+    font-size: 1.25em;
+    font-weight: 900;
+    text-align: left;
+    letter-spacing: 0.03em;
+}
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+.toc li {
+    margin-bottom: 0;
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+.toc a {
+    color: #1976d2;
+    text-decoration: none;
+    font-size: 1.25em;
+    font-weight: 800;
+    display: block;
+    padding: 7px 0;
+    border-right-width: 0;
+    transition: background 0.2s;
+    width: 300px;
+    text-align: left;
+/* 最後のliの区切り線を消す */
+}
+.toc ul li:last-child {
+    border-bottom: none;
+}
+.toc a:hover {
+    background: #f5f5f5;
+}
+/* テーブルスクロール用 */
+.table-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 12px;
+}
+.table-scroll table {
+    margin-top: 0;
+}
+table.card-table.card-table-type td {
+    background-color: #fff;
+}
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #444;
+    color: #fff;
+    padding: 20px 0 10px 0;
+    text-align: center;
+}
+nav {
+    margin-top: 10px;
+    background: #222;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+nav li {
+    margin: 0;
+}
+nav a {
+    display: block;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    border-right: 1px solid #444;
+}
+nav a:last-child {
+    border-right: none;
+}
+nav a:hover {
+    background: #555;
+}
+.container {
+    max-width: 900px;
+    margin: 0px auto 0 auto;
+    background: #fff;
+    padding: 20px 20px 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+h2 {
+    margin-top: 0;
+    color: #222;
+    font-size: 2.4em;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-shadow: 2px 2px 8px rgba(21,101,192,0.18), 0 0 2px #fff;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+table.card-table.card-table-type {
+    table-layout: fixed;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 9px;
+    text-align: center;
+    font-size: 1em;
+}
+th {
+    background: #eee;
+}
+.filter-area {
+    text-align: right;
+    margin-bottom: 7px;
+}
+.filter-input {
+    font-size: 1em;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    margin-left: 10px;
+}
+.no-result-row {
+    text-align: center;
+    font-size: 1.1em;
+    color: #888;
+}
+footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+}
+#output {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.point {
+    border: 4px double #ffd600;
+    background: #fffde7;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 18px 0;
+    font-size: 0.9em;
+    color: #222;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255,214,0,0.08);
+}
+
+/* 一覧・詳細テーブル画像サイズ（PCのみ） */
+@media (min-width: 601px) {
+    #excel-table img,
+    #excel-table2 img {
+        width: 64px !important;
+        height: 64px !important;
+        max-width: 64px !important;
+        max-height: 64px !important;
+    }
+    .table-scroll img {
+        width: 64px !important;
+        height: 64px !important;
+    }
+    .details th.col1, .details td.col1,
+    .border th.col1, .border td.col1,
+    table.card-table.card-table-type th.col1 {
+        width: 100px !important;
+        min-width: 100px !important;
+    }
+    .details th.col2, .details td.col2,
+    .border th.col2, .border td.col2,
+    table.card-table.card-table-type th.col2 {
+        min-width: 500px !important;
+        width: 500px !important;
+    }
+    .fc-daygrid-day-number {
+        font-size: 1.2em !important;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 1em !important;
+    }
+    .fc-toolbar-title {
+        font-size: 2em !important;
+    }    
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px 10px;
+        padding: 20px 15px;
+    }
+    
+    h1, h2 {
+        font-size: 1.4em;
+    }
+    
+    h3 {
+        font-size: 1.35em;
+        color: #222;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+    }
+    
+    h4 {
+        font-size: 1em;
+        color: #222;
+        font-weight: bold;
+        letter-spacing: 0.01em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    table {
+        font-size: 0.9em;
+    }
+    
+    th, td {
+        padding: 6px 4px;
+        font-size: 0.85em;
+    }
+    
+    .table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-input {
+        width: 100%;
+        font-size: 16px;
+        padding: 8px 12px;
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
+    
+    #sortToggle {
+        font-size: 0.8em;
+        padding: 2px 2px;
+        touch-action: manipulation;
+    }
+
+    /* FullCalendar 日付サイズ調整（スマホ用） */
+    .fc-daygrid-day-number {
+        font-size: 12px !important;
+    }
+    .fc-toolbar-title {
+        font-size: 16px !important;
+    }
+    .fc-col-header-cell-cushion {
+        font-size: 12px !important;
+    }
+    /* スマホ用テーブル列幅 - 評価基準・ABCテーブル統一 */
+    .details th.col1, .details td.col1,
+    .border th.col1, .border td.col1,
+    table.card-table.card-table-type th.col1 {
+        width: 70px !important;
+        min-width: 70px !important;
+    }
+    .details th.col2, .details td.col2,
+    .border th.col2, .border td.col2,
+    table.card-table.card-table-type th.col2 {
+        min-width: 200px !important;
+        width: 200px !important;
+    }
+    .table-scroll {
+        overflow-x: auto;
+    }
+    .table-scroll table {
+        width: 100%;
+    }    
+    table th,
+    table td {
+        white-space: normal;
+        word-break: break-word;
+    }
+    .table-scroll img,
+    table img {
+        width: 44px !important;
+        height: 44px !important;
+    }
+    .sohyo {
+        font-size: 0.8em;
+    }
+    .search-skill {
+        margin-bottom: 0.5em;
+    }
+    .search-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5em;
+        margin-bottom: 0.5em;
+    }
+    .search-checkboxes {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        margin-bottom: 0.5em;
+        gap: 1em;
+    }
+    .search-box {
+        margin-left: 0;
+    }
+    .last-update {
+        font-size: 0.25em !important;
+    }
+}
