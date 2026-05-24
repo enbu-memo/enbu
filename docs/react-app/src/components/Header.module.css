@@ -27,6 +27,12 @@
   background: #ff9800;
 }
 @media (max-width: 768px) {
+    .dropdown .dropdownContent {
+    display: none !important;
+  }
+  .dropdown.open .dropdownContent {
+    display: block !important;
+  }
   .navMenu > li > a.active::after,
   .dropbtn.active::after {
     left: 0;
@@ -73,7 +79,7 @@ nav a:hover {
   display: inline-block;
 }
 .dropbtn {
-  display: inline-block;
+  display: block; /* activeの::afterを正しく表示するためinline-blockからblockに変更 */
   color: #fff;
   text-decoration: none;
   background: none;

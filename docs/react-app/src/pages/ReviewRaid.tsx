@@ -91,7 +91,7 @@ const ReviewRaid: React.FC = () => {
             title="攻撃大将"
             rows={[
               { rank: 'SS', rankClass: 'rank-ss', images: ['TB008', 'TC010'] },
-              { rank: 'S',  rankClass: 'rank-s',  images: ['TA013', 'TA011'] },
+              { rank: 'S',  rankClass: 'rank-s',  images: ['TA013', 'TA011','TC012'] },
               { rank: 'A',  rankClass: 'rank-a',  images: ['TA007', 'TC008', 'TB013'] },
               { rank: 'B',  rankClass: 'rank-b',  images: ['TA003', 'TA009', 'TC002', 'TA006'] },
               { rank: 'C',  rankClass: 'rank-c',  images: ['TA005', 'TB002', 'TC003'] },
@@ -102,9 +102,9 @@ const ReviewRaid: React.FC = () => {
             title="計略大将"
             rows={[
               { rank: 'SS', rankClass: 'rank-ss', images: ['TB011', 'TC007', 'TA014'] },
-              { rank: 'S',  rankClass: 'rank-s',  images: ['TA012', 'TA010', 'TC009'] },
-              { rank: 'A',  rankClass: 'rank-a',  images: ['TB004', 'TB010'] },
-              { rank: 'B',  rankClass: 'rank-b',  images: ['TB003', 'TC006'] },
+              { rank: 'S',  rankClass: 'rank-s',  images: ['TA012', 'TA010', 'TC009', 'TC011', 'TB014'] },
+              { rank: 'A',  rankClass: 'rank-a',  images: ['TB010'] },
+              { rank: 'B',  rankClass: 'rank-b',  images: ['TB003', 'TC006','TB004'] },
               { rank: 'C',  rankClass: 'rank-c',  images: ['TA001', 'TA004', 'TB006'] },
             ]}
           />

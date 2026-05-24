@@ -187,7 +187,7 @@ const SheetDetail: React.FC<{
 const skillroot: React.FC = () => {
   const [tableData, setTableData] = useState<any[]>([]);
   const [headers, setHeaders] = useState<string[]>([]);
-  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<{ imgName: string; displayName: string } | null>(null);
 
   useEffect(() => {
     fetch('/db/skillroot.xlsm')
@@ -212,9 +212,13 @@ const skillroot: React.FC = () => {
             <h2>スキル玉合成ルート</h2>
             <PriorityTable />
             {!selectedSkill ? (
-              <SkillSearch headers={headers} tableData={tableData} onSelectSkill={setSelectedSkill} />
+              <SkillSearch headers={headers} tableData={tableData} onSelectSkill={(imgName, skillName) => setSelectedSkill({ imgName, displayName: skillName })} />
             ) : (
-              <SheetDetail skillName={selectedSkill} onBack={() => setSelectedSkill(null)} />
+            <SheetDetail
+              skillName={selectedSkill.imgName}
+              displayName={selectedSkill.displayName}
+              onBack={() => setSelectedSkill(null)}
+            />
             )}
             <div className="copyright">©Sumzap, Inc. All Rights Reserved.</div>
           </section>
