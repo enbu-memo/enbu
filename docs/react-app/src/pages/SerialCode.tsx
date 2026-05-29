@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
+import { Helmet } from 'react-helmet-async';
 
 // コピーアイコンSVG
 const CopyIcon: React.FC = () => (
@@ -110,6 +111,11 @@ const SerialCode: React.FC = () => {
     <div className="container">
       <PageMeta title="シリアルコード" />
       <LastUpdated filePath="src/pages/SerialCode.tsx" />
+        <Helmet>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="シリアルコード" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA001.png" />
+        </Helmet>
       <main>
         <section>
           <h2>シリアルコード</h2>

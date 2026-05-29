@@ -1,6 +1,7 @@
 import React from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
+import { Helmet } from 'react-helmet-async';
 
 // 大将画像テーブル共通コンポーネント
 const CardImageTable: React.FC<{ title: string; images: string[]; folder?: string }> = ({
@@ -29,6 +30,11 @@ const DeckRaid: React.FC = () => {
     <div className="container">
       <LastUpdated filePath="src/pages/DeckRaid.tsx" />
       <PageMeta title="デッキレイド" />
+        <Helmet>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="デッキレイド" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/RA001.png" />
+        </Helmet>
       <main>
         <section>
           <h2>レイドのすゝめ</h2>

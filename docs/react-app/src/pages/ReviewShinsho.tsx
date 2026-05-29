@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
 import * as XLSX from 'xlsx';
+import { Helmet } from 'react-helmet-async';
 
 const getRankClass = (cell: string): string => {
   const rank = cell.split('(')[0];
@@ -42,6 +43,11 @@ const ReviewShinsho: React.FC = () => {
     <div className="container">
       <PageMeta title="武将評価【神将】" />
       <LastUpdated filePath="src/pages/ReviewShinsho.tsx" />
+      <Helmet>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="武将評価【神将】" />
+        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA009.png" />
+      </Helmet>
       <main>
         <section>
           <h2>武将評価【神将】</h2>

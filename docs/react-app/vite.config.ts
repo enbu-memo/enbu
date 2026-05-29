@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       sitemap({
-        hostname: 'https://enbu-kouryaku.com', // ← ここだけ変える
+        hostname: 'https://enbu-kouryaku.com',
         dynamicRoutes: [
           '/',
           '/SkillRoot',

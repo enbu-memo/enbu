@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
 import * as XLSX from 'xlsx'
+import { Helmet } from 'react-helmet-async';
 
 // 優先度テーブル
 const PriorityTable: React.FC = () => (
@@ -207,6 +208,11 @@ const skillroot: React.FC = () => {
       <div className="container">
         <PageMeta title="スキル玉合成ルート" />
         <LastUpdated filePath="src/pages/SkillRoot.tsx" />
+          <Helmet>
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="スキル玉合成ルート" />
+            <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/SZ001.png" />
+          </Helmet>
         <main>
           <section>
             <h2>スキル玉合成ルート</h2>

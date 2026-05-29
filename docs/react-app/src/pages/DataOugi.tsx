@@ -9,6 +9,11 @@ const DataOugi: React.FC = () => {
     <div className="container">
       <LastUpdated filePath="src/pages/DataOugi.tsx" />
       <PageMeta title="公開データ【奥義】" />
+        <Helmet>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="公開データ【奥義】" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/DA001.png" />
+        </Helmet>
       <main>
         <h2>公開データ【奥義】</h2>
         <nav className="toc">

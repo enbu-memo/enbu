@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
 import * as XLSX from 'xlsx';
+import { Helmet } from 'react-helmet-async';
 
 const EXCEL_PATH = '/db/raid-statistics.xlsx';
 
@@ -144,6 +145,11 @@ const RaidStatistics: React.FC = () => {
     <div className="container">
       <PageMeta title="討伐デッキ統計" />
       <LastUpdated filePath="src/pages/RaidStatistics.tsx" />
+        <Helmet>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="公開データ【討伐デッキ】" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/RA003.png" />
+        </Helmet>
       <main>
         <section>
           <h2>討伐デッキ統計</h2>

@@ -1,6 +1,7 @@
 import React from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
+import { Helmet } from 'react-helmet-async';
 
 type CardTableProps = {
   title: string;
@@ -40,6 +41,11 @@ const ReviewRaid: React.FC = () => {
     <div className="container">
       <PageMeta title="大将評価【レイド】" />
       <LastUpdated filePath="src/pages/ReviewRaid.tsx" />
+      <Helmet>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="大将評価【レイド】" />
+        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA001.png" />
+      </Helmet>
       <main>
         <section>
           <h2>大将評価【レイド】</h2>

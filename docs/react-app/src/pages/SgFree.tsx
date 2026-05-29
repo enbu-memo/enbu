@@ -1,11 +1,17 @@
 import React from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
+import { Helmet } from 'react-helmet-async';
 
 const SgFree: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="SGの使い道【無償】" />
+      <Helmet>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="SGの使い道【無償】" />
+        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA013.png" />
+      </Helmet>
       <LastUpdated filePath="src/pages/SgFree.tsx" />
       <main>
         <section>

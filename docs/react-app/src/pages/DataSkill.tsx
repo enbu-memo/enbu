@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
+import { Helmet } from 'react-helmet-async';
 
 const imgStyle: React.CSSProperties = { maxWidth: '100%', height: 'auto' };
 
@@ -42,6 +43,11 @@ const DataSkill: React.FC = () => {
     <div className="container">
       <LastUpdated filePath="src/pages/DataSkill.tsx" />
       <PageMeta title="公開データ【スキル】" />
+        <Helmet>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="公開データ【スキル】" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/DB009.png" />
+        </Helmet>
       <main>
         <h2>公開データ【スキル】</h2>
 
