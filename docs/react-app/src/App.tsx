@@ -1,4 +1,4 @@
-import { useMemo, lazy, Suspense } from 'react';
+import { useState, useMemo, lazy, Suspense } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 import './global.css';
 import Header from './components/Header';
@@ -15,6 +15,8 @@ type HistoryRow = {
   content: string;
 };
 
+const VISIBLE_COUNT = 10;
+
 const SkillRoot      = lazy(() => import('./pages/SkillRoot'));
 const SgFree         = lazy(() => import('./pages/SgFree'));
 const SerialCode     = lazy(() => import('./pages/SerialCode'));
@@ -30,7 +32,8 @@ const RaidStatistics = lazy(() => import('./pages/RaidStatistics'));
 const DeckRaid       = lazy(() => import('./pages/DeckRaid'));
 
 function TopPage() {
-  // 日付ごとにグループ化（新しい順）
+  const [showAll, setShowAll] = useState(false);
+
   const grouped = useMemo(() => {
     const sorted = [...(historyData as HistoryRow[])].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -40,12 +43,15 @@ function TopPage() {
       if (!map.has(row.date)) map.set(row.date, []);
       map.get(row.date)!.push(row);
     }
-    return map;
+    return [...map.entries()];
   }, []);
+
+  const visible = showAll ? grouped : grouped.slice(0, VISIBLE_COUNT);
+  const hasMore = grouped.length > VISIBLE_COUNT;
 
   return (
     <div className="container">
-      <LastUpdated route="/App.tsx" />
+      <LastUpdated route={null} />
       <Helmet>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="戦国炎舞の備忘録" />
@@ -55,7 +61,7 @@ function TopPage() {
         <section>
           <h2>更新履歴</h2>
           <div className="history-list">
-            {[...grouped.entries()].map(([date, rows]) => (
+            {visible.map(([date, rows]) => (
               <div key={date} className="history-group">
                 <div className="history-date">
                   {new Date(date).toLocaleDateString('ja-JP', {
@@ -81,6 +87,14 @@ function TopPage() {
               </div>
             ))}
           </div>
+          {hasMore && (
+            <button
+              className="history-toggle"
+              onClick={() => setShowAll(s => !s)}
+            >
+              {showAll ? '▲ 折りたたむ' : `▼ もっと見る（全${grouped.length}件）`}
+            </button>
+          )}
         </section>
       </main>
     </div>
