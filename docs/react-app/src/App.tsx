@@ -108,19 +108,19 @@ function App() {
       <Suspense fallback={<div>読み込み中...</div>}>
         <Routes>
           <Route path="/"              element={<TopPage />} />
-          <Route path="/SkillRoot"     element={<SkillRoot />} />
-          <Route path="/SgFree"        element={<SgFree />} />
-          <Route path="/SerialCode"    element={<SerialCode />} />
-          <Route path="/ReviewTensho"  element={<ReviewTensho />} />
-          <Route path="/ReviewShinsho" element={<ReviewShinsho />} />
-          <Route path="/ReviewHaou"    element={<ReviewHaou />} />
-          <Route path="/ReviewRaid"    element={<ReviewRaid />} />
-          <Route path="/ReviewKassen"  element={<ReviewKassen />} />
-          <Route path="/DataSkill"     element={<DataSkill />} />
-          <Route path="/DataOugi"      element={<DataOugi />} />
-          <Route path="/DataOther"     element={<DataOther />} />
-          <Route path="/RaidStatistics" element={<RaidStatistics />} />
-          <Route path="/DeckRaid"      element={<DeckRaid />} />
+          <Route path="/SkillRoot.tsx"     element={<SkillRoot />} />
+          <Route path="/SgFree.tsx"        element={<SgFree />} />
+          <Route path="/SerialCode.tsx"    element={<SerialCode />} />
+          <Route path="/ReviewTensho.tsx"  element={<ReviewTensho />} />
+          <Route path="/ReviewShinsho.tsx" element={<ReviewShinsho />} />
+          <Route path="/ReviewHaou.tsx"    element={<ReviewHaou />} />
+          <Route path="/ReviewRaid.tsx"    element={<ReviewRaid />} />
+          <Route path="/ReviewKassen.tsx"  element={<ReviewKassen />} />
+          <Route path="/DataSkill.tsx"     element={<DataSkill />} />
+          <Route path="/DataOugi.tsx"      element={<DataOugi />} />
+          <Route path="/DataOther.tsx"     element={<DataOther />} />
+          <Route path="/RaidStatistics.tsx" element={<RaidStatistics />} />
+          <Route path="/DeckRaid.tsx"      element={<DeckRaid />} />
         </Routes>
       </Suspense>
       <CopyrightFooter />
