@@ -46,7 +46,7 @@ const ReviewHaou: React.FC = () => {
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="武将評価【覇王】" />
-          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA011.png" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/IA011.png" />
         </Helmet>
       <main>
         <section>

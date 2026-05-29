@@ -148,7 +148,7 @@ const RaidStatistics: React.FC = () => {
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="公開データ【討伐デッキ】" />
-          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/RA003.png" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/raid/RA003.png" />
         </Helmet>
       <main>
         <section>

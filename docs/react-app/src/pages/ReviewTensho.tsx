@@ -47,7 +47,7 @@ const ReviewTensho: React.FC = () => {
       <Helmet>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="武将評価【天将】" />
-        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA010.png" />
+        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/IA010.png" />
       </Helmet>
       <main>
         <section>

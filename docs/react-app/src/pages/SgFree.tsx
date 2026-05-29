@@ -10,7 +10,7 @@ const SgFree: React.FC = () => {
       <Helmet>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="SGの使い道【無償】" />
-        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA013.png" />
+        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/IA013.png" />
       </Helmet>
       <LastUpdated filePath="src/pages/SgFree.tsx" />
       <main>

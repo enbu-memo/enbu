@@ -48,7 +48,7 @@ const ReviewKassen: React.FC = () => {
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="大将評価【合戦】" />
-          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA001.png" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/IA001.png" />
         </Helmet>
       <main>
         <section>

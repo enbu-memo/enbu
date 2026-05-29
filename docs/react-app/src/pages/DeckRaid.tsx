@@ -33,7 +33,7 @@ const DeckRaid: React.FC = () => {
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="デッキレイド" />
-          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/RA001.png" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/raid/RA003.png" />
         </Helmet>
       <main>
         <section>

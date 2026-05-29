@@ -114,7 +114,7 @@ const SerialCode: React.FC = () => {
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="シリアルコード" />
-          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/IA001.png" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/IA001.png" />
         </Helmet>
       <main>
         <section>

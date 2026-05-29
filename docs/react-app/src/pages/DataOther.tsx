@@ -1,12 +1,18 @@
 import React from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
+import { Helmet } from 'react-helmet-async';
 
 const DataOther: React.FC = () => {
   return (
     <div className="container">
       <LastUpdated filePath="src/pages/DataOther.tsx" />
       <PageMeta title="公開データ【その他】" />
+        <Helmet>
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="公開データ【その他】" />
+          <meta name="twitter:image" content="https://enbu-kouryaku.com/img/data/DC001.png" />
+        </Helmet>
       <main>
         <h2>公開データ【その他】</h2>
         <nav className="toc">
