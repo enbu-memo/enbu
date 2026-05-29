@@ -28,7 +28,7 @@ const CardImageTable: React.FC<{ title: string; images: string[]; folder?: strin
 const DeckRaid: React.FC = () => {
   return (
     <div className="container">
-      <LastUpdated filePath="src/pages/DeckRaid.tsx" />
+      <LastUpdated route="/DeckRaid.tsx" />
       <PageMeta title="デッキレイド" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />

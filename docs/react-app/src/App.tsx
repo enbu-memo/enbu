@@ -1,28 +1,19 @@
-import { useState, useMemo, lazy, Suspense } from 'react';
+import { useMemo, lazy, Suspense } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 import './global.css';
 import Header from './components/Header';
 import CopyrightFooter from './components/CopyrightFooter';
 import BackToTopButton from './components/BackToTopButton';
 import LastUpdated from './components/LastUpdated';
-
-declare const __GIT_HISTORY__: string | null;
+import { Helmet } from 'react-helmet-async';
+import historyData from './data/history.json';
 
 type HistoryRow = {
-  page: string;
   date: string;
-  content: string;
+  page: string;
   route: string;
+  content: string;
 };
-
-const historyData: HistoryRow[] = (() => {
-  try {
-    const raw = typeof __GIT_HISTORY__ !== 'undefined' ? __GIT_HISTORY__ : null;
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-})();
 
 const SkillRoot      = lazy(() => import('./pages/SkillRoot'));
 const SgFree         = lazy(() => import('./pages/SgFree'));
@@ -39,76 +30,56 @@ const RaidStatistics = lazy(() => import('./pages/RaidStatistics'));
 const DeckRaid       = lazy(() => import('./pages/DeckRaid'));
 
 function TopPage() {
-  const [filter, setFilter] = useState('');
-  const [sortAsc, setSortAsc] = useState(false);
-
-  const filtered = useMemo(() => {
-    let rows = historyData.filter(row =>
-      row.page.toLowerCase().includes(filter.toLowerCase())
+  // 日付ごとにグループ化（新しい順）
+  const grouped = useMemo(() => {
+    const sorted = [...(historyData as HistoryRow[])].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
-    rows = rows.sort((a, b) => {
-      const dA = new Date(a.date).getTime();
-      const dB = new Date(b.date).getTime();
-      return sortAsc ? dA - dB : dB - dA;
-    });
-    return rows;
-  }, [filter, sortAsc]);
+    const map = new Map<string, HistoryRow[]>();
+    for (const row of sorted) {
+      if (!map.has(row.date)) map.set(row.date, []);
+      map.get(row.date)!.push(row);
+    }
+    return map;
+  }, []);
 
   return (
     <div className="container">
-      <LastUpdated filePath="src/App.tsx" />
+      <LastUpdated route="/App.tsx" />
+      <Helmet>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="戦国炎舞の備忘録" />
+        <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/AA000.png" />
+      </Helmet>
       <main>
         <section>
           <h2>更新履歴</h2>
-          <input
-            type="text"
-            id="filterInput"
-            placeholder="ページで絞り込み"
-            value={filter}
-            onChange={e => setFilter(e.target.value)}
-          />
-          <div className="table-scroll">
-            <table id="historyTable">
-              <thead>
-                <tr>
-                  <th>ページ</th>
-                  <th>
-                    更新日
-                    <button id="sortToggle" title="ソート" onClick={() => setSortAsc(s => !s)}>
-                      {sortAsc ? '▲' : '▼'}
-                    </button>
-                  </th>
-                  <th>更新内容</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.length === 0 ? (
-                  <tr>
-                    <td colSpan={3} style={{ textAlign: 'center', color: '#aaa' }}>
-                      デプロイ後に履歴が表示されます
-                    </td>
-                  </tr>
-                ) : (
-                  filtered.map((row, i) => (
-                    <tr key={i}>
-                      <td>
-                        {row.route && row.route !== '/' ? (
-                          <Link to={row.route} style={{ textDecoration: 'underline', color: '#1976d2' }}>
-                            {row.page}
-                          </Link>
-                        ) : (
-                          row.page
-                        )}
-                      </td>
-                      <td>{new Date(row.date).toLocaleDateString('ja-JP', {
-                        year: 'numeric', month: 'numeric', day: 'numeric'
-                      })}</td>
-                      <td>{row.content}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+          <div className="history-list">
+            {[...grouped.entries()].map(([date, rows]) => (
+              <div key={date} className="history-group">
+                <div className="history-date">
+                  {new Date(date).toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                  })}
+                </div>
+                <ul className="history-items">
+                  {rows.map((row, i) => (
+                    <li key={i} className="history-item">
+                      {row.route && row.route !== '/' ? (
+                        <Link to={row.route} className="history-page-link">
+                          {row.page}
+                        </Link>
+                      ) : (
+                        <span className="history-page">{row.page}</span>
+                      )}
+                      <span className="history-content">{row.content}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </section>
       </main>

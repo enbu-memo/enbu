@@ -110,7 +110,7 @@ const SerialCode: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="シリアルコード" />
-      <LastUpdated filePath="src/pages/SerialCode.tsx" />
+      <LastUpdated route="/SerialCode.tsx" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="シリアルコード" />

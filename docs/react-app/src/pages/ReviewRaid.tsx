@@ -40,7 +40,7 @@ const ReviewRaid: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="大将評価【レイド】" />
-      <LastUpdated filePath="src/pages/ReviewRaid.tsx" />
+      <LastUpdated route="/ReviewRaid.tsx" />
       <Helmet>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="大将評価【レイド】" />

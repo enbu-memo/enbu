@@ -41,7 +41,7 @@ const TocGroup: React.FC<{ label: string; href: string; items: { href: string; l
 const DataSkill: React.FC = () => {
   return (
     <div className="container">
-      <LastUpdated filePath="src/pages/DataSkill.tsx" />
+      <LastUpdated route="/DataSkill.tsx" />
       <PageMeta title="公開データ【スキル】" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />

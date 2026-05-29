@@ -1,26 +1,18 @@
-// src/components/LastUpdated.tsx
 import React from 'react';
-
-declare const __GIT_UPDATED_AT__: string | null;
+import historyData from '../data/history.json';
 
 interface Props {
-  filePath: string;
+  route: string | null; // nullのとき全体の最新を表示
 }
 
-const LastUpdated: React.FC<Props> = ({ filePath }) => {
-  const allDates: Record<string, string> | null = (() => {
-    try {
-      const raw = typeof __GIT_UPDATED_AT__ !== 'undefined' ? __GIT_UPDATED_AT__ : null;
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  })();
+const LastUpdated: React.FC<Props> = ({ route }) => {
+  const latest = route === null
+    ? historyData[0]
+    : historyData.find(row => row.route === route);
 
-  const dateStr = allDates?.[filePath];
-  if (!dateStr) return null;
+  if (!latest) return null;
 
-  const formatted = new Date(dateStr).toLocaleDateString('ja-JP', {
+  const formatted = new Date(latest.date).toLocaleDateString('ja-JP', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
