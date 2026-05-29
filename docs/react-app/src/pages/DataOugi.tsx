@@ -1,6 +1,7 @@
 import React from 'react';
 import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
+import { Helmet } from 'react-helmet-async';
 
 const imgStyle: React.CSSProperties = { maxWidth: '100%', height: 'auto' };
 
