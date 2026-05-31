@@ -1,4 +1,5 @@
 [ 
+  { "date": "2026-05-31", "page": "シリアルコード", "route": "/serialcode.tsx", "content": "生放送のシリアルコード追加" },
   { "date": "2026-05-26", "page": "大将-合戦", "route": "/reviewkassen.tsx", "content": "副将追加" },
   { "date": "2026-05-26", "page": "大将-レイド", "route": "/reviewraid.tsx", "content": "新大将追加" },
   { "date": "2026-05-26", "page": "武将-神将", "route": "/reviewshinsho.tsx", "content": "新カード追加" },
