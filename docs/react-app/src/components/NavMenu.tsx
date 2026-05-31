@@ -23,12 +23,27 @@ type DropdownMenuProps = {
 };
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, items, isMobile, isOpen, isActive, onToggle, onClose }) => {
+  // サブメニューが1つだけの場合はそのままLinkとして振る舞う（サブメニュー非表示）
+  const isSingle = items.length === 1;
+
   const handleToggle = (e: React.MouseEvent) => {
-    if (isMobile) {
+    if (isMobile && !isSingle) {
       e.preventDefault();
       onToggle();
     }
   };
+
+  if (isSingle) {
+    return (
+      <Link
+        to={items[0].to}
+        className={isActive ? styles.active : ''}
+        onClick={onClose}
+      >
+        {title}
+      </Link>
+    );
+  }
 
   return (
     <div className={`${styles.dropdown} ${isOpen ? styles.open : ''}`}>
@@ -49,7 +64,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, items, isMobile, isO
   );
 };
 
-const dropdowns = [
+// すべてのメニューを統一構造で定義
+const menus = [
   {
     title: '武将評価',
     items: [
@@ -86,6 +102,19 @@ const dropdowns = [
       { label: '討伐デッキ統計', to: '/raidstatistics.tsx' },
     ],
   },
+  // シンプルリンクもサブメニュー1件のドロップダウンとして統一
+  {
+    title: 'スキル玉合成ルート',
+    items: [
+      { label: 'スキル玉合成ルート', to: '/skillroot.tsx' },
+    ],
+  },
+  {
+    title: 'シリアルコード',
+    items: [
+      { label: 'シリアルコード', to: '/serialcode.tsx' },
+    ],
+  },
 ];
 
 const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
@@ -104,9 +133,8 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
     if (!isManual) {
       setActivePath(pathname === '/' ? null : pathname);
 
-      // スマホ時はドロップダウンも自動で開く
       if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-        const idx = dropdowns.findIndex(d => d.items.some(item => item.to === pathname));
+        const idx = menus.findIndex(m => m.items.some(item => item.to === pathname));
         setOpenIndex(idx !== -1 ? idx : null);
       } else {
         setOpenIndex(null);
@@ -115,16 +143,11 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
     setIsManual(false);
   }, [pathname]);
 
-  // メニュー選択時（パスをセットし、他は自動でリセットされる）
-  const handleSelect = (path: string) => {
-    setActivePath(path);
-    setIsManual(true);
-  };
-
-  // ドロップダウンのトグル
-  const handleToggle = (idx: number, firstItemPath: string) => {
-    handleSelect(firstItemPath);
+  // メニュー選択・トグル
+  const handleToggle = (idx: number) => {
+    setActivePath(menus[idx].items[0].to);
     setOpenIndex(prev => (prev === idx ? null : idx));
+    setIsManual(true);
   };
 
   const handleClose = () => {
@@ -136,41 +159,22 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
 
   return (
     <ul className={menuOpen ? `${styles.navMenu} ${styles.active}` : styles.navMenu}>
-      {dropdowns.map((d, idx) => {
-        // ドロップダウン内のいずれかのパスがactivePathと一致すればアクティブ
-        const isActive = d.items.some(item => item.to === activePath);
+      {menus.map((m, idx) => {
+        const isActive = m.items.some(item => item.to === activePath);
         return (
-          <li key={d.title}>
+          <li key={m.title}>
             <DropdownMenu
-              title={d.title}
-              items={d.items}
+              title={m.title}
+              items={m.items}
               isMobile={isMobile}
               isOpen={openIndex === idx}
               isActive={isActive}
-              onToggle={() => handleToggle(idx, d.items[0].to)}
+              onToggle={() => handleToggle(idx)}
               onClose={handleClose}
             />
           </li>
         );
       })}
-      <li>
-        <Link
-          to="/skillroot.tsx"
-          className={activePath === '/skillroot.tsx' ? styles.active : ''}
-          onClick={() => handleSelect('/skillroot.tsx')}
-        >
-          スキル玉合成ルート
-        </Link>
-      </li>
-      <li>
-        <Link
-          to="/serialcode.tsx"
-          className={activePath === '/serialcode.tsx' ? styles.active : ''}
-          onClick={() => handleSelect('/serialcode.tsx')}
-        >
-          シリアルコード
-        </Link>
-      </li>
     </ul>
   );
 };
