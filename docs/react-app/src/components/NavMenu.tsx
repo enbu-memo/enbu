@@ -23,7 +23,6 @@ type DropdownMenuProps = {
 };
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, items, isMobile, isOpen, isActive, onToggle, onClose }) => {
-  // サブメニューが1つだけの場合はそのままLinkとして振る舞う（サブメニュー非表示）
   const isSingle = items.length === 1;
 
   const handleToggle = (e: React.MouseEvent) => {
@@ -64,7 +63,6 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, items, isMobile, isO
   );
 };
 
-// すべてのメニューを統一構造で定義
 const menus = [
   {
     title: '武将評価',
@@ -102,7 +100,6 @@ const menus = [
       { label: '討伐デッキ統計', to: '/raidstatistics.tsx' },
     ],
   },
-  // シンプルリンクもサブメニュー1件のドロップダウンとして統一
   {
     title: 'スキル玉合成ルート',
     items: [
@@ -121,14 +118,10 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const { pathname } = useLocation();
 
-  // アクティブなパスを一元管理
   const [activePath, setActivePath] = useState<string | null>(null);
-  // 開いているドロップダウンのインデックス
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  // 手動選択フラグ
   const [isManual, setIsManual] = useState(false);
 
-  // ページ遷移時の自動セット
   React.useEffect(() => {
     if (!isManual) {
       setActivePath(pathname === '/' ? null : pathname);
@@ -143,16 +136,16 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
     setIsManual(false);
   }, [pathname]);
 
-  // メニュー選択・トグル
   const handleToggle = (idx: number) => {
-    setActivePath(menus[idx].items[0].to);
+    // openIndexのトグルのみ行い、activePathは現在のpathnameを常に維持する
+    setActivePath(pathname === '/' ? null : pathname);
     setOpenIndex(prev => (prev === idx ? null : idx));
     setIsManual(true);
   };
 
   const handleClose = () => {
     setOpenIndex(null);
-    setActivePath(null);
+    // activePathはリセットしない（pathnameベースのuseEffectに任せる）
     setIsManual(false);
     onClose();
   };
