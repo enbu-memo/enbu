@@ -17,7 +17,7 @@ const getRankClass = (cell: string): string => {
   }
 };
 
-const ReviewHaou: React.FC = () => {
+const reviewhaou: React.FC = () => {
   const [headers, setHeaders] = useState<string[]>([]);
   const [tableData, setTableData] = useState<any[][]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -42,7 +42,7 @@ const ReviewHaou: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="武将評価【覇王】" />
-      <LastUpdated route="/ReviewHaou.tsx" />
+      <LastUpdated route="/reviewhaou.tsx" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="武将評価【覇王】" />
@@ -143,4 +143,4 @@ const ReviewHaou: React.FC = () => {
   );
 };
 
-export default ReviewHaou;
+export default reviewhaou;

@@ -99,7 +99,7 @@ const ColTable: React.FC<{ table: ColTable }> = ({ table }) => {
   );
 };
 
-const RaidStatistics: React.FC = () => {
+const raidstatistics: React.FC = () => {
   const [sheetNames, setSheetNames] = useState<string[]>([]);
   const [dateMap, setDateMap] = useState<SheetDateMap>({});
   const [selectedSheet, setSelectedSheet] = useState<string>('');
@@ -144,7 +144,7 @@ const RaidStatistics: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="討伐デッキ統計" />
-      <LastUpdated route="/RaidStatistics.tsx" />
+      <LastUpdated route="/raidstatistics.tsx" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="公開データ【討伐デッキ】" />
@@ -211,4 +211,4 @@ const RaidStatistics: React.FC = () => {
   );
 };
 
-export default RaidStatistics;
+export default raidstatistics;

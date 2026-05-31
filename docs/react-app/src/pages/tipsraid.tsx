@@ -25,10 +25,10 @@ const CardImageTable: React.FC<{ title: string; images: string[]; folder?: strin
   </table>
 );
 
-const DeckRaid: React.FC = () => {
+const tipsraid: React.FC = () => {
   return (
     <div className="container">
-      <LastUpdated route="/DeckRaid.tsx" />
+      <LastUpdated route="/tipsraid.tsx" />
       <PageMeta title="デッキレイド" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
@@ -140,4 +140,4 @@ const DeckRaid: React.FC = () => {
   );
 };
 
-export default DeckRaid;
+export default tipsraid;

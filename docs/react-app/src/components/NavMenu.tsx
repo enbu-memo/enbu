@@ -53,37 +53,37 @@ const dropdowns = [
   {
     title: '武将評価',
     items: [
-      { label: '天将カード', to: '/ReviewTensho' },
-      { label: '神将カード', to: '/ReviewShinsho' },
-      { label: '覇王カード', to: '/ReviewHaou' },
+      { label: '天将カード', to: '/reviewtensho.tsx' },
+      { label: '神将カード', to: '/reviewshinsho.tsx' },
+      { label: '覇王カード', to: '/reviewhaou.tsx' },
     ],
   },
   {
     title: '大将評価',
     items: [
-      { label: 'レイド', to: '/ReviewRaid' },
-      { label: '合戦',  to: '/ReviewKassen' },
+      { label: 'レイド', to: '/reviewraid.tsx' },
+      { label: '合戦',  to: '/reviewkassen.tsx' },
     ],
   },
   {
     title: 'SGの使い道',
     items: [
-      { label: '無償SG', to: '/SgFree' },
+      { label: '無償SG', to: '/sgfree.tsx' },
     ],
   },
   {
     title: '公開データ',
     items: [
-      { label: '奥義',   to: '/DataOugi' },
-      { label: 'スキル', to: '/DataSkill' },
-      { label: 'その他', to: '/DataOther' },
+      { label: '奥義',   to: '/dataougi.tsx' },
+      { label: 'スキル', to: '/dataskill.tsx' },
+      { label: 'その他', to: '/dataother.tsx' },
     ],
   },
   {
     title: 'レイド',
     items: [
-      { label: 'レイドのすゝめ', to: '/DeckRaid' },
-      { label: '討伐デッキ統計', to: '/RaidStatistics' },
+      { label: 'レイドのすゝめ', to: '/tipsraid.tsx' },
+      { label: '討伐デッキ統計', to: '/raidstatistics.tsx' },
     ],
   },
 ];
@@ -92,44 +92,44 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   const { pathname } = useLocation();
 
-  // 開いているドロップダウン
+  // アクティブなパスを一元管理
+  const [activePath, setActivePath] = useState<string | null>(null);
+  // 開いているドロップダウンのインデックス
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  // アクティブなメニュー
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   // 手動選択フラグ
   const [isManual, setIsManual] = useState(false);
 
   // ページ遷移時の自動セット
   React.useEffect(() => {
     if (!isManual) {
-      if (pathname === "/") {
-        setActiveIndex(null);
-        setOpenIndex(null);
-        return;
-      }
-      const idx = dropdowns.findIndex(d => d.items.some(item => item.to === pathname));
-      setActiveIndex(idx !== -1 ? idx : null);
-      // スマホ時はサブメニューも開く
-      if (typeof window !== 'undefined' && window.innerWidth <= 768 && idx !== -1) {
-        setOpenIndex(idx);
+      setActivePath(pathname === '/' ? null : pathname);
+
+      // スマホ時はドロップダウンも自動で開く
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+        const idx = dropdowns.findIndex(d => d.items.some(item => item.to === pathname));
+        setOpenIndex(idx !== -1 ? idx : null);
       } else {
         setOpenIndex(null);
       }
     }
-    // ページ遷移時は手動選択解除
     setIsManual(false);
   }, [pathname]);
 
-  // メニュークリック時は手動選択を優先
-  const handleToggle = (idx: number) => {
-    setActiveIndex(idx);
-    setOpenIndex(prev => (prev === idx ? null : idx));
+  // メニュー選択時（パスをセットし、他は自動でリセットされる）
+  const handleSelect = (path: string) => {
+    setActivePath(path);
     setIsManual(true);
+  };
+
+  // ドロップダウンのトグル
+  const handleToggle = (idx: number, firstItemPath: string) => {
+    handleSelect(firstItemPath);
+    setOpenIndex(prev => (prev === idx ? null : idx));
   };
 
   const handleClose = () => {
     setOpenIndex(null);
-    setActiveIndex(null);
+    setActivePath(null);
     setIsManual(false);
     onClose();
   };
@@ -137,7 +137,8 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
   return (
     <ul className={menuOpen ? `${styles.navMenu} ${styles.active}` : styles.navMenu}>
       {dropdowns.map((d, idx) => {
-        const isActive = activeIndex === idx;
+        // ドロップダウン内のいずれかのパスがactivePathと一致すればアクティブ
+        const isActive = d.items.some(item => item.to === activePath);
         return (
           <li key={d.title}>
             <DropdownMenu
@@ -146,7 +147,7 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
               isMobile={isMobile}
               isOpen={openIndex === idx}
               isActive={isActive}
-              onToggle={() => handleToggle(idx)}
+              onToggle={() => handleToggle(idx, d.items[0].to)}
               onClose={handleClose}
             />
           </li>
@@ -154,18 +155,18 @@ const NavMenu: React.FC<NavMenuProps> = ({ menuOpen, onClose }) => {
       })}
       <li>
         <Link
-          to="/SkillRoot"
-          className={pathname === '/SkillRoot' ? styles.active : ''}
-          onClick={handleClose}
+          to="/skillroot.tsx"
+          className={activePath === '/skillroot.tsx' ? styles.active : ''}
+          onClick={() => handleSelect('/skillroot.tsx')}
         >
           スキル玉合成ルート
         </Link>
       </li>
       <li>
         <Link
-          to="/SerialCode"
-          className={pathname === '/SerialCode' ? styles.active : ''}
-          onClick={handleClose}
+          to="/serialcode.tsx"
+          className={activePath === '/serialcode.tsx' ? styles.active : ''}
+          onClick={() => handleSelect('/serialcode.tsx')}
         >
           シリアルコード
         </Link>

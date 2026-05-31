@@ -3,10 +3,10 @@ import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
 import { Helmet } from 'react-helmet-async';
 
-const DataOther: React.FC = () => {
+const dataother: React.FC = () => {
   return (
     <div className="container">
-      <LastUpdated route="/DataOther.tsx" />
+      <LastUpdated route="/dataother.tsx" />
       <PageMeta title="公開データ【その他】" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
@@ -37,4 +37,4 @@ const DataOther: React.FC = () => {
   );
 };
 
-export default DataOther;
+export default dataother;

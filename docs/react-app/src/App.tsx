@@ -17,19 +17,19 @@ type HistoryRow = {
 
 const VISIBLE_COUNT = 10;
 
-const SkillRoot      = lazy(() => import('./pages/SkillRoot'));
-const SgFree         = lazy(() => import('./pages/SgFree'));
-const SerialCode     = lazy(() => import('./pages/SerialCode'));
-const ReviewTensho   = lazy(() => import('./pages/ReviewTensho'));
-const ReviewShinsho  = lazy(() => import('./pages/ReviewShinsho'));
-const ReviewHaou     = lazy(() => import('./pages/ReviewHaou'));
-const ReviewRaid     = lazy(() => import('./pages/ReviewRaid'));
-const ReviewKassen   = lazy(() => import('./pages/ReviewKassen'));
-const DataSkill      = lazy(() => import('./pages/DataSkill'));
-const DataOugi       = lazy(() => import('./pages/DataOugi'));
-const DataOther      = lazy(() => import('./pages/DataOther'));
-const RaidStatistics = lazy(() => import('./pages/RaidStatistics'));
-const DeckRaid       = lazy(() => import('./pages/DeckRaid'));
+const Skillroot      = lazy(() => import('./pages/skillroot'));
+const Sgfree         = lazy(() => import('./pages/sgfree'));
+const Serialcode     = lazy(() => import('./pages/serialcode'));
+const Reviewtensho   = lazy(() => import('./pages/reviewtensho'));
+const Reviewshinsho  = lazy(() => import('./pages/reviewshinsho'));
+const Reviewhaou     = lazy(() => import('./pages/reviewhaou'));
+const Reviewraid     = lazy(() => import('./pages/reviewraid'));
+const Reviewkassen   = lazy(() => import('./pages/reviewkassen'));
+const Dataskill      = lazy(() => import('./pages/dataskill'));
+const Dataougi       = lazy(() => import('./pages/dataougi'));
+const Dataother      = lazy(() => import('./pages/dataother'));
+const Raidstatistics = lazy(() => import('./pages/raidstatistics'));
+const Tipsraid       = lazy(() => import('./pages/tipsraid'));
 
 function TopPage() {
   const [showAll, setShowAll] = useState(false);
@@ -108,19 +108,19 @@ function App() {
       <Suspense fallback={<div>読み込み中...</div>}>
         <Routes>
           <Route path="/"              element={<TopPage />} />
-          <Route path="/SkillRoot.tsx"     element={<SkillRoot />} />
-          <Route path="/SgFree.tsx"        element={<SgFree />} />
-          <Route path="/SerialCode.tsx"    element={<SerialCode />} />
-          <Route path="/ReviewTensho.tsx"  element={<ReviewTensho />} />
-          <Route path="/ReviewShinsho.tsx" element={<ReviewShinsho />} />
-          <Route path="/ReviewHaou.tsx"    element={<ReviewHaou />} />
-          <Route path="/ReviewRaid.tsx"    element={<ReviewRaid />} />
-          <Route path="/ReviewKassen.tsx"  element={<ReviewKassen />} />
-          <Route path="/DataSkill.tsx"     element={<DataSkill />} />
-          <Route path="/DataOugi.tsx"      element={<DataOugi />} />
-          <Route path="/DataOther.tsx"     element={<DataOther />} />
-          <Route path="/RaidStatistics.tsx" element={<RaidStatistics />} />
-          <Route path="/DeckRaid.tsx"      element={<DeckRaid />} />
+          <Route path="/skillroot.tsx"     element={<Skillroot />} />
+          <Route path="/sgfree.tsx"        element={<Sgfree />} />
+          <Route path="/serialcode.tsx"    element={<Serialcode />} />
+          <Route path="/reviewtensho.tsx"  element={<Reviewtensho />} />
+          <Route path="/reviewshinsho.tsx" element={<Reviewshinsho />} />
+          <Route path="/reviewhaou.tsx"    element={<Reviewhaou />} />
+          <Route path="/reviewraid.tsx"    element={<Reviewraid />} />
+          <Route path="/reviewkassen.tsx"  element={<Reviewkassen />} />
+          <Route path="/dataskill.tsx"     element={<Dataskill />} />
+          <Route path="/dataougi.tsx"      element={<Dataougi />} />
+          <Route path="/dataother.tsx"     element={<Dataother />} />
+          <Route path="/raidstatistics.tsx" element={<Raidstatistics />} />
+          <Route path="/tipsraid.tsx"      element={<Tipsraid />} />
         </Routes>
       </Suspense>
       <CopyrightFooter />

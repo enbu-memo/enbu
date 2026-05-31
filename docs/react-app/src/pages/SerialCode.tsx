@@ -23,6 +23,9 @@ type SerialRow = {
 };
 
 const serialData: SerialRow[] = [
+  { id: 'serial-TENICHITEN',  code: 'TENICHITEN', expireDate: '2026/6/30',  expireText: '2026/6/30',  distDate: '2026/5/19', distText: '2026/5/19' },
+  { id: 'serial-GOLDENMARU',  code: 'GOLDENMARU', expireDate: '2026/5/31',  expireText: '2026/5/31',  distDate: '2026/5/19', distText: '2026/5/19' },
+  { id: 'serial-THIRTEEN',    code: 'THIRTEEN',   expireDate: '2026/5/31',  expireText: '2026/5/31',  distDate: '2026/4/06', distText: '2026/4/06' },
   { id: 'serial-tenichikai',  code: 'TENICHIKAI', expireDate: '2026/2/28',  expireText: '2026/2/28',  distDate: '2026/02/06', distText: '2026/2/6'   },
   { id: 'serial-mochiten',    code: 'MOCHITEN',   expireDate: '2026/2/28',  expireText: '2026/2/28',  distDate: '2026/01/06', distText: '2026/1/6'   },
   { id: 'serial-GOLDXMAS',    code: 'GOLDXMAS',   expireDate: '2026/1/31',  expireText: '2026/1/31',  distDate: '2025/12/25', distText: '2025/12/25' },
@@ -96,7 +99,7 @@ const CopyButton: React.FC<{ code: string; isNew: boolean; disabled: boolean }> 
   );
 };
 
-const SerialCode: React.FC = () => {
+const serialcode: React.FC = () => {
   const [sortAsc, setSortAsc] = useState(false);
 
   const sorted = useMemo(() => {
@@ -110,7 +113,7 @@ const SerialCode: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="シリアルコード" />
-      <LastUpdated route="/SerialCode.tsx" />
+      <LastUpdated route="/serialcode.tsx" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="シリアルコード" />
@@ -172,4 +175,4 @@ const SerialCode: React.FC = () => {
   );
 };
 
-export default SerialCode;
+export default serialcode;

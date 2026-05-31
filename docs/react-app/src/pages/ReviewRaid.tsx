@@ -36,11 +36,11 @@ const CardTable: React.FC<CardTableProps> = ({ title, rows }) => (
   </>
 );
 
-const ReviewRaid: React.FC = () => {
+const reviewraid: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="大将評価【レイド】" />
-      <LastUpdated route="/ReviewRaid.tsx" />
+      <LastUpdated route="/reviewraid.tsx" />
       <Helmet>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="大将評価【レイド】" />
@@ -132,4 +132,4 @@ const ReviewRaid: React.FC = () => {
   );
 };
 
-export default ReviewRaid;
+export default reviewraid;

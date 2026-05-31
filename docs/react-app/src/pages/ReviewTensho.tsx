@@ -18,7 +18,7 @@ const getRankClass = (cell: string): string => {
   }
 };
 
-const ReviewTensho: React.FC = () => {
+const reviewtensho: React.FC = () => {
   const [headers, setHeaders] = useState<string[]>([]);
   const [tableData, setTableData] = useState<any[][]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -43,7 +43,7 @@ const ReviewTensho: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="武将評価【天将】" />
-      <LastUpdated route="/ReviewTensho.tsx" />
+      <LastUpdated route="/reviewtensho.tsx" />
       <Helmet>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="武将評価【天将】" />
@@ -150,4 +150,4 @@ const ReviewTensho: React.FC = () => {
   );
 };
 
-export default ReviewTensho;
+export default reviewtensho;

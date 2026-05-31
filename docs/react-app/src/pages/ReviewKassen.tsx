@@ -40,11 +40,11 @@ const CardTable: React.FC<CardTableProps> = ({ title, rows }) => (
   </>
 );
 
-const ReviewKassen: React.FC = () => {
+const reviewkassen: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="大将評価【合戦】" />
-      <LastUpdated route="/ReviewKassen.tsx" />
+      <LastUpdated route="/reviewkassen.tsx" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="大将評価【合戦】" />
@@ -145,4 +145,4 @@ const ReviewKassen: React.FC = () => {
   );
 };
 
-export default ReviewKassen;
+export default reviewkassen;

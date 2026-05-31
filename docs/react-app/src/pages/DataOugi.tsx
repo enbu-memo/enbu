@@ -5,10 +5,10 @@ import { Helmet } from 'react-helmet-async';
 
 const imgStyle: React.CSSProperties = { maxWidth: '100%', height: 'auto' };
 
-const DataOugi: React.FC = () => {
+const dataougi: React.FC = () => {
   return (
     <div className="container">
-      <LastUpdated route="/DataOugi.tsx" />
+      <LastUpdated route="/dataougi.tsx" />
       <PageMeta title="公開データ【奥義】" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
@@ -65,4 +65,4 @@ const DataOugi: React.FC = () => {
   );
 };
 
-export default DataOugi;
+export default dataougi;

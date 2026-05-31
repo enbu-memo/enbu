@@ -3,7 +3,7 @@ import LastUpdated from '../components/LastUpdated';
 import PageMeta from '../components/PageMeta';
 import { Helmet } from 'react-helmet-async';
 
-const SgFree: React.FC = () => {
+const sgfree: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="SGの使い道【無償】" />
@@ -12,7 +12,7 @@ const SgFree: React.FC = () => {
         <meta name="twitter:title" content="SGの使い道【無償】" />
         <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/IA013.png" />
       </Helmet>
-      <LastUpdated route="/SgFree.tsx" />
+      <LastUpdated route="/sgfree.tsx" />
       <main>
         <section>
           <h2>SGの使い道【無償】</h2>
@@ -247,4 +247,4 @@ const MeritDemeritTable: React.FC<{
   </>
 );
 
-export default SgFree;
+export default sgfree;
