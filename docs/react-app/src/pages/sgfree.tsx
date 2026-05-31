@@ -12,7 +12,7 @@ const sgfree: React.FC = () => {
         <meta name="twitter:title" content="SGの使い道【無償】" />
         <meta name="twitter:image" content="https://enbu-kouryaku.com/img/item/IA013.png" />
       </Helmet>
-      <LastUpdated route="/sgfree.tsx" />
+      <LastUpdated route="/sgfree" />
       <main>
         <section>
           <h2>SGの使い道【無償】</h2>

@@ -8,7 +8,7 @@ const imgStyle: React.CSSProperties = { maxWidth: '100%', height: 'auto' };
 const dataougi: React.FC = () => {
   return (
     <div className="container">
-      <LastUpdated route="/dataougi.tsx" />
+      <LastUpdated route="/dataougi" />
       <PageMeta title="公開データ【奥義】" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />

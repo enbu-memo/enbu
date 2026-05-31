@@ -207,7 +207,7 @@ const skillroot: React.FC = () => {
     <>
       <div className="container">
         <PageMeta title="スキル玉合成ルート" />
-        <LastUpdated route="/skillroot.tsx" />
+        <LastUpdated route="/skillroot" />
           <Helmet>
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content="スキル玉合成ルート" />

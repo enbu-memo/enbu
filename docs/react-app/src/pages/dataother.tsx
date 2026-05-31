@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 const dataother: React.FC = () => {
   return (
     <div className="container">
-      <LastUpdated route="/dataother.tsx" />
+      <LastUpdated route="/dataother" />
       <PageMeta title="公開データ【その他】" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />

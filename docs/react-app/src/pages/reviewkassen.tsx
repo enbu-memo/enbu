@@ -44,7 +44,7 @@ const reviewkassen: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="大将評価【合戦】" />
-      <LastUpdated route="/reviewkassen.tsx" />
+      <LastUpdated route="/reviewkassen" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="大将評価【合戦】" />

@@ -2,7 +2,7 @@ import React from 'react';
 import historyData from '../data/history.json';
 
 interface Props {
-  route: string | null; // nullのとき全体の最新を表示
+  route: string | null;
 }
 
 const LastUpdated: React.FC<Props> = ({ route }) => {

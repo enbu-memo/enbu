@@ -144,7 +144,7 @@ const raidstatistics: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="討伐デッキ統計" />
-      <LastUpdated route="/raidstatistics.tsx" />
+      <LastUpdated route="/raidstatistics" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="公開データ【討伐デッキ】" />

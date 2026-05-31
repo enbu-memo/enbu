@@ -67,49 +67,49 @@ const menus = [
   {
     title: '武将評価',
     items: [
-      { label: '天将カード', to: '/reviewtensho.tsx' },
-      { label: '神将カード', to: '/reviewshinsho.tsx' },
-      { label: '覇王カード', to: '/reviewhaou.tsx' },
+      { label: '天将カード', to: '/reviewtensho' },
+      { label: '神将カード', to: '/reviewshinsho' },
+      { label: '覇王カード', to: '/reviewhaou' },
     ],
   },
   {
     title: '大将評価',
     items: [
-      { label: 'レイド', to: '/reviewraid.tsx' },
-      { label: '合戦',  to: '/reviewkassen.tsx' },
+      { label: 'レイド', to: '/reviewraid' },
+      { label: '合戦',  to: '/reviewkassen' },
     ],
   },
   {
     title: 'SGの使い道',
     items: [
-      { label: '無償SG', to: '/sgfree.tsx' },
+      { label: '無償SG', to: '/sgfree' },
     ],
   },
   {
     title: '公開データ',
     items: [
-      { label: '奥義',   to: '/dataougi.tsx' },
-      { label: 'スキル', to: '/dataskill.tsx' },
-      { label: 'その他', to: '/dataother.tsx' },
+      { label: '奥義',   to: '/dataougi' },
+      { label: 'スキル', to: '/dataskill' },
+      { label: 'その他', to: '/dataother' },
     ],
   },
   {
     title: 'レイド',
     items: [
-      { label: 'レイドのすゝめ', to: '/tipsraid.tsx' },
-      { label: '討伐デッキ統計', to: '/raidstatistics.tsx' },
+      { label: 'レイドのすゝめ', to: '/tipsraid' },
+      { label: '討伐デッキ統計', to: '/raidstatistics' },
     ],
   },
   {
     title: 'スキル玉合成ルート',
     items: [
-      { label: 'スキル玉合成ルート', to: '/skillroot.tsx' },
+      { label: 'スキル玉合成ルート', to: '/skillroot' },
     ],
   },
   {
     title: 'シリアルコード',
     items: [
-      { label: 'シリアルコード', to: '/serialcode.tsx' },
+      { label: 'シリアルコード', to: '/serialcode' },
     ],
   },
 ];

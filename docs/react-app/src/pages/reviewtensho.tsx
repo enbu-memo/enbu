@@ -43,7 +43,7 @@ const reviewtensho: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="武将評価【天将】" />
-      <LastUpdated route="/reviewtensho.tsx" />
+      <LastUpdated route="/reviewtensho" />
       <Helmet>
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="武将評価【天将】" />

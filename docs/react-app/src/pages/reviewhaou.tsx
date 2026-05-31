@@ -42,7 +42,7 @@ const reviewhaou: React.FC = () => {
   return (
     <div className="container">
       <PageMeta title="武将評価【覇王】" />
-      <LastUpdated route="/reviewhaou.tsx" />
+      <LastUpdated route="/reviewhaou" />
         <Helmet>
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="武将評価【覇王】" />
